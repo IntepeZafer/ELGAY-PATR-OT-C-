@@ -1,0 +1,843 @@
+{
+        "kategoriler":[
+                {
+                                           
+  "SinirSistemi": [
+    {
+      "soruMetni": "Beyin hangi kemik yapısının içinde yer alır?",
+      "cevap": "Kafatası",
+      "cozuldumu": false,
+      "secenekler": {
+        "A": "Kas",
+        "B": "Kalp",
+        "C": "Deri",
+        "D": "Kafatası"
+      },
+      "DogruSecenek": "D"
+    },
+    {
+      "soruMetni": "Vücut sıcaklığını düzenleyen beyin bölgesi hangisidir?",
+      "cevap": "Hipotalamus",
+      "cozuldumu": "false",
+      "secenekler": {
+        "A": "Hipofiz",
+        "B": "Hipotalamus",
+        "C": "Hipokamp",
+        "D": "Epitalamus"
+      },
+      "DogruSecenek": "B"
+    },
+    {
+      "soruMetni": "Hafıza ve öğrenme süreçlerinde en çok rol oynayan beyin bölgesi hangisidir?",
+      "cevap": "Hipokampus",
+      "cozuldumu": "false",
+      "secenekler": {
+        "A": "Serebellum",
+        "B": "Hipotalamus",
+        "C": "Hipokampus",
+        "D": "Epitalamus"
+      },
+      "DogruSecenek": "C"
+    },
+    {
+      "soruMetni": "Denge ve koordinasyon hangi beyin bölgesiyle sağlanır?",
+      "cevap": "Serebellum",
+      "cozuldumu": "false",
+      "secenekler": {
+        "A": "Hipokampus",
+        "B": "Hipotalamus",
+        "C": "Serebrum",
+        "D": "Serebellum"
+      },
+      "DogruSecenek": "D"
+    },
+    {
+      "soruMetni": " Vücutta ağrı algısını ileten sinir lifleri hangileridir?",
+      "cevap": "C lifleri",
+      "cozuldumu": "false",
+      "secenekler": {
+        "A": "A lifleri",
+        "B": "B lifleri",
+        "C": "C lifleri",
+        "D": "D lifleri"
+      },
+      "DogruSecenek": "C"
+    },
+    {
+      "soruMetni": " Beyin-omurilik sıvısı nerede üretilir?",
+      "cevap": "Koroid Pleksus",
+      "cozuldumu": "false",
+      "secenekler": {
+        "A": "Koroid Pleksus",
+        "B": "Korteks",
+        "C": "Substans Paryetalis",
+        "D": "Substans Nigra"
+      },
+      "DogruSecenek": "A"
+    },
+    {
+      "soruMetni": "Beynin görme ile ilgili bölgesi hangisidir?",
+      "cevap": "Oksipital lop",
+      "cozuldumu": "false",
+      "secenekler": {
+        "A": "Frontal lop",
+        "B": "Parietal lop",
+        "C": "Oksipital lop",
+        "D": "Temporal lop"
+      },
+      "DogruSecenek": "C"
+    },
+    {
+      "soruMetni": "Beyin ve omuriliği çevreleyen koruyucu zarlar hangileridir?",
+      "cevap": "Pia, archoid, dura mater",
+      "cozuldumu": "false",
+      "secenekler": {
+        "A": "Pia, archoid, dura mater",
+        "B": "Pia, dura mater, meninx",
+        "C": "Pia, dura mater, arachnoid",
+        "D": "Pia, archoid, meninx"
+      },
+      "DogruSecenek": "A"
+    },
+    {
+      "soruMetni": "Beyindeki bilgi aktarım hızını artıran yapı nedir?",
+      "cevap": "Miyelin kılıf",
+      "cozuldumu": "false",
+      "secenekler": {
+        "A": "Akson ucu",
+        "B": "Dendirit",
+        "C": "Miyelin kılıf",
+        "D": "Sinirli kas"
+      },
+      "DogruSecenek": "C"
+    },
+    {
+      "soruMetni": "Beynin sol ve sağ yarım küresini bağlayan yapı nedir?",
+      "cevap": "Corpus callosum",
+      "cozuldumu": "false",
+      "secenekler": {
+        "A": "Corpus callosum",
+        "B": "Splenum",
+        "C": "Pons",
+        "D": "Medulla oblongata"
+      },
+      "DogruSecenek": "A"
+    },
+    {
+      "soruMetni": " Beyindeki duyusal bilgilerin toplanıp yönlendirildiği merkez hangisidir?",
+      "cevap": "Talamus",
+      "cozuldumu": "false",
+      "secenekler": {
+        "A": "Hipofiz",
+        "B": "Hipokamp",
+        "C": "Talamus",
+        "D": "Hipotalamus"
+      },
+      "DogruSecenek": "C"
+    },
+    {
+      "soruMetni": "Beyindeki açlık ve tokluk merkezleri hangi yapıda bulunur?",
+      "cevap": "Hipotalamus",
+      "cozuldumu": "false",
+      "secenekler": {
+        "A": "Hipofiz",
+        "B": "Hipokamp",
+        "C": "Talamus",
+        "D": "Hipotalamus"
+      },
+      "DogruSecenek": "D"
+    },
+    {
+      "soruMetni": "Beyindeki hormon salgılayan bez hangisidir?",
+      "cevap": "Hipatalamus",
+      "cozuldumu": "false",
+      "secenekler": {
+        "A": "Hipofiz",
+        "B": "Hipokamp",
+        "C": "Talamus",
+        "D": "Hipotalamus"
+      },
+      "DogruSecenek": "D"
+    },
+    {
+      "soruMetni": "Beyindeki hafıza oluşumunda görev alan yapı hangisidir?",
+      "cevap": "Hipakampus",
+      "cozuldumu": "false",
+      "secenekler": {
+        "A": "Hipofiz",
+        "B": "Hipokampus",
+        "C": "Talamus",
+        "D": "Hipotalamus"
+      },
+      "DogruSecenek": "B"
+    },
+    {
+      "soruMetni": "Beyindeki işitme ve konuşma merkezleri hangi lobda yer alır?",
+      "cevap": "Temporal",
+      "cozuldumu": "false",
+      "secenekler": {
+        "A": "Frontal",
+        "B": "Occipital",
+        "C": "Parietal",
+        "D": "Temporal"
+      },
+      "DogruSecenek": "D"
+    }
+  ],
+  "DolasimSistemi": [
+    {
+      "soruMetni": "Hangi organ oksijenli kanı vücuda pompalar?",
+      "cevap": "Kalp",
+      "cozuldumu": false,
+      "secenekler": {
+        "A": "Kas",
+        "B": "Kalp",
+        "C": "Deri",
+        "D": "Akciğer"
+      },
+      "DogruSecenek": "B"
+    },
+    {
+      "soruMetni": "Oksijenli kanı vücuda pompalayan kalp bölümü hangisidir?",
+      "cevap": "Sol ventrikül",
+      "cozuldumu": "false",
+      "secenekler": {
+        "A": "Sol ventrikül",
+        "B": "Sağ ventrikül",
+        "C": "Aort kapağı",
+        "D": "Trakea"
+      },
+      "DogruSecenek": "A"
+    },
+    {
+      "soruMetni": "Kemik iliği hangi hücreleri üretir?",
+      "cevap": "Kan hücreleri",
+      "cozuldumu": "false",
+      "secenekler": {
+        "A": "Kas hücreleri",
+        "B": "Kan hücreleri",
+        "C": "sprem hücreleri",
+        "D": "Kemik hücreleri"
+      },
+      "DogruSecenek": "B"
+    },
+    {
+      "soruMetni": "Kan basıncını düzenleyen hormon sistemi hangisidir?",
+      "cevap": "Renin-Angiotensin-Aldosteron",
+      "cozuldumu": "false",
+      "secenekler": {
+        "A": "Adrenalin-Norepinefrin",
+        "B": "Renin-Angiotensin-Aldosteron",
+        "C": "Insulin-Glikojen",
+        "D": "Estradiol-Östrojen"
+      },
+      "DogruSecenek": "B"
+    },
+    {
+      "soruMetni": "Kanın vücutta dolaşımını sağlayan damar türü hangisidir?",
+      "cevap": "Arter",
+      "cozuldumu": "false",
+      "secenekler": {
+        "A": "Arter",
+        "B": "Ven",
+        "C": "Arterioven",
+        "D": "Kapiller"
+      },
+      "DogruSecenek": "A"
+    },
+    {
+      "soruMetni": "Alyuvarların ömrü ortalama ne kadardır?",
+      "cevap": "120 gün",
+      "cozuldumu": "false",
+      "secenekler": {
+        "A": "30 gün",
+        "B": "60 gün",
+        "C": "90 gün",
+        "D": "120 gün"
+      },
+      "DogruSecenek": "D"
+    },
+    {
+      "soruMetni": "Kanın kalbe geri dönüşünü sağlayan damarlar hangileridir?",
+      "cevap": "Venler",
+      "cozuldumu": "false",
+      "secenekler": {
+        "A": "Arterler",
+        "B": "Venler",
+        "C": "Arterioven",
+        "D": "Kapiller"
+      },
+      "DogruSecenek": "B"
+    },
+    {
+      "soruMetni": "Kalbin kas dokusu hangi özel kas türüdür?",
+      "cevap": "Kalp kası",
+      "cozuldumu": "false",
+      "secenekler": {
+        "A": "Sinirli kas",
+        "B": "İskelet kası",
+        "C": "Kalp kası",
+        "D": "Sarıkas"
+      },
+      "DogruSecenek": "C"
+    },
+    {
+      "soruMetni": "Kanın damar dışına çıkmasını engelleyen süreç nedir?",
+      "cevap": "Koagülasyon",
+      "cozuldumu": "false",
+      "secenekler": {
+        "A": "Transkripsiyon",
+        "B": "Koagülasyon",
+        "C": "Metabolizma",
+        "D": "Oksidatif fosforilasyon"
+      },
+      "DogruSecenek": "B"
+    },
+    {
+      "soruMetni": "Kalbin sağ kulakçığına gelen kan hangi damardan gelir?",
+      "cevap": "Vena Cava",
+      "cozuldumu": "false",
+      "secenekler": {
+        "A": "Vena Cava",
+        "B": "Vena Subclavia",
+        "C": "Vena Jugularis",
+        "D": "Vena Subclavia"
+      },
+      "DogruSecenek": "A"
+    },
+    {
+      "soruMetni": "Kalbin kasılma sırasında kanı pompaladığı evreye ne ad verilir?",
+      "cevap": "Sistol",
+      "cozuldumu": "false",
+      "secenekler": {
+        "A": "Diastol",
+        "B": "Sistol",
+        "C": "Eksol",
+        "D": "Vetrikül"
+      },
+      "DogruSecenek": "B"
+    }
+  ],
+  "IskeletSistemi": [
+   
+     {
+      "soruMetni": "İnsan vücudunda kaç kemik vardır (yetişkinlerde)?",
+      "cevap": "206",
+      "cozuldumu": "false",
+      "secenekler": {
+        "A": "206",
+        "B": "200",
+        "C": "204",
+        "D": "208"
+      },
+      "DogruSecenek": "A"
+    },
+    {
+      "soruMetni": "Kemik iliği hangi hücreleri üretir?",
+      "cevap": "Kan hücreleri",
+      "cozuldumu": "false",
+      "secenekler": {
+        "A": "Kas hücreleri",
+        "B": "Kan hücreleri",
+        "C": "sprem hücreleri",
+        "D": "Kemik hücreleri"
+      },
+      "DogruSecenek": "B"
+    },
+    {
+      "soruMetni": "Kemiklerin uç kısımlarında bulunan ve büyümeyi sağlayan yapı nedir?",
+      "cevap": "Epifiz plağı",
+      "cozuldumu": "false",
+      "secenekler": {
+        "A": "Osteoblast",
+        "B": "Osteoklast",
+        "C": "Epifiz plağı",
+        "D": "Osteokondrit"
+      },
+      "DogruSecenek": "C"
+    },
+    {
+      "soruMetni": "Kemik dokusunun yıkımını gerçekleştiren hücreler hangileridir?",
+      "cevap": "Osteoklastlar",
+      "cozuldumu": "false",
+      "secenekler": {
+        "A": "Osteoklastlar",
+        "B": "Osteoblastlar",
+        "C": "Osteokondritler",
+        "D": "Osteofiller"
+      },
+      "DogruSecenek": "A"
+    },
+    {
+      "soruMetni": "Kemik dokusunun yeniden yapılandırılmasında rol oynayan hücreler hangileridir?",
+      "cevap": "Osteoblastlar",
+      "cozuldumu": "false",
+      "secenekler": {
+        "A": "Osteoklastlar",
+        "B": "Osteoblastlar",
+        "C": "Osteokondritler",
+        "D": "Osteofiller"
+      },
+      "DogruSecenek": "B"
+    },
+    {
+      "soruMetni": "Kemiklerin sertliğini sağlayan mineral nedir?",
+      "cevap": "Kalsiyum fosfat",
+      "cozuldumu": "false",
+      "secenekler": {
+        "A": "Kalsiyum fosfat",
+        "B": "Kalsiyum klorür",
+        "C": "Kalsiyum karbonat",
+        "D": "Kalsiyum sitrat"
+      },
+      "DogruSecenek": "A"
+    },
+    {
+      "soruMetni": "Kasların kemiğe bağlandığı yapılar hangileridir?",
+      "cevap": "Tendon",
+      "cozuldumu": "false",
+      "secenekler": {
+        "A": "Kemik",
+        "B": "Kas",
+        "C": "Tendon",
+        "D": "Miyofibril"
+      },
+      "DogruSecenek": "C"
+    },
+    {
+      "soruMetni": "Kıkırdak dokunun beslenmesi nasıl gerçekleşir?",
+      "cevap": "Difüzyonla",
+      "cozuldumu": "false",
+      "secenekler": {
+        "A": "Difüzyonla",
+        "B": "Endokrin yolla",
+        "C": "Kolonizasyonla",
+        "D": "Oksidatif fosforilasyonla"
+      },
+      "DogruSecenek": "A"
+    }
+  ],
+  "KasSistemi": [
+    {
+      "soruMetni": "Kas kasılması sırasında hangi iyon hücre içine girerek süreci başlatır?",
+      "cevap": "Kalsiyum",
+      "cozuldumu": "false",
+      "secenekler": {
+        "A": "Kalsiyum",
+        "B": "Potasyum",
+        "C": "Sodyum",
+        "D": "Klor"
+      },
+      "DogruSecenek": "A"
+    },
+    {
+      "soruMetni": "Solunum sırasında diyafram kasıldığında ne olur?",
+      "cevap": "Akciğerlere hava girer",
+      "cozuldumu": "false",
+      "secenekler": {
+        "A": "Hava dışarı çıkar",
+        "B": "Göğüs boşluğu daralır",
+        "C": "Akciğerler küçülür",
+        "D": "Akciğerlere hava girer"
+      },
+      "DogruSecenek": "D"
+    },
+    {
+      "soruMetni": "Mide hangi tür kaslarla kasılır?",
+      "cevap": "Düz Kas",
+      "cozuldumu": "false",
+      "secenekler": {
+        "A": "Sinirli Kas",
+        "B": "Düz Kas",
+        "C": "İskelet Kası",
+        "D": "Sarıkas"
+      },
+      "DogruSecenek": "B"
+    },
+    {
+      "soruMetni": " Kasların oksijen ihtiyacını karşılayan pigment hangisidir?",
+      "cevap": "Mioglobin",
+      "cozuldumu": "false",
+      "secenekler": {
+        "A": "Eritrosit",
+        "B": "Hemoglobin",
+        "C": "Mioglobin",
+        "D": "Klorofil"
+      },
+      "DogruSecenek": "C"
+    },
+    {
+      "soruMetni": "Kalbin kas dokusu hangi özel kas türüdür?",
+      "cevap": "Kalp kası",
+      "cozuldumu": "false",
+      "secenekler": {
+        "A": "Sinirli kas",
+        "B": "İskelet kası",
+        "C": "Kalp kası",
+        "D": "Sarıkas"
+      },
+      "DogruSecenek": "C"
+    },
+    {
+      "soruMetni": "Kas dokusunun hücresel yapı taşlarından biri olan miyofibrillerin içindeki proteinler hangisidir?",
+      "cevap": "Aktin ve miyozin",
+      "cozuldumu": "false",
+      "secenekler": {
+        "A": "Hemoglobin ve mioglobin",
+        "B": "Kollajen ve elastin",
+        "C": "Eritrosit ve trombosit",
+        "D": "Aktin ve miyozin"
+      },
+      "DogruSecenek": "D"
+    }
+    
+  ],
+  "SindirimSistemi": [
+    {
+      "soruMetni": "Sindirim sisteminde besinlerin emildiği ana organ hangisidir?",
+      "cevap": "Bağırsak",
+      "cozuldumu": false,
+      "secenekler": {
+        "A": "Kas",
+        "B": "Kalp",
+        "C": "Deri",
+        "D": "Bağırsak"
+      },
+      "DogruSecenek": "D"
+    },
+    {
+      "soruMetni": "Hangi organ hem endokrin hem de ekzokrin işlev görür?",
+      "cevap": "Pankreas",
+      "cozuldumu": "false",
+      "secenekler": {
+        "A": "Pankreas",
+        "B": "Beyin",
+        "C": "Kalp",
+        "D": "Orta Beyin"
+      },
+      "DogruSecenek": "A"
+    },
+    {
+      "soruMetni": "Sindirim sisteminde yağların emilimi esas olarak nerede gerçekleşir?",
+      "cevap": "İnce bağırsak",
+      "cozuldumu": "false",
+      "secenekler": {
+        "A": "Kolosterol",
+        "B": "Mide",
+        "C": "Kalın bağırsak",
+        "D": "İnce bağırsak"
+      },
+      "DogruSecenek": "D"
+    },
+    {
+      "soruMetni": "Mide hangi tür kaslarla kasılır?",
+      "cevap": "Düz Kas",
+      "cozuldumu": "false",
+      "secenekler": {
+        "A": "Sinirli Kas",
+        "B": "Düz Kas",
+        "C": "İskelet Kası",
+        "D": "Sarıkas"
+      },
+      "DogruSecenek": "B"
+    },
+    {
+      "soruMetni": "Mide mukozasını koruyan madde hangisidir?",
+      "cevap": "Müsin",
+      "cozuldumu": "false",
+      "secenekler": {
+        "A": "Hemoglobin",
+        "B": "Müsin",
+        "C": "Klorofil",
+        "D": "Eritrosit"
+      },
+      "DogruSecenek": "B"
+    },
+    {
+      "soruMetni": "Sindirim sisteminde enzimlerin etkili olabilmesi için gerekli pH ortamı nerede asidiktir?",
+      "cevap": "Mide",
+      "cozuldumu": "false",
+      "secenekler": {
+        "A": "Pankreas",
+        "B": "Kalın bağırsak",
+        "C": "İnce bağırsak",
+        "D": "Mide"
+      },
+      "DogruSecenek": "D"
+    }
+  ],
+  "HucreBiyolojisiVeGenetik": [
+    {
+      "soruMetni": "İnsan vücudunda en küçük hücre hangisidir?",
+      "cevap": "Sprem hücresi",
+      "cozuldumu": "false",
+      "secenekler": {
+        "A": "Kas hücresi",
+        "B": "Kan hücresi",
+        "C": "Sprem hücresi",
+        "D": "Kemik hücresi"
+      },
+      "DogruSecenek": "C"
+    },
+    {
+      "soruMetni": "Genetik materyalin bulunduğu hücre bölümü hangisidir?",
+      "cevap": "Çekirdek",
+      "cozuldumu": "false",
+      "secenekler": {
+        "A": "Sitoplazma",
+        "B": "Lizozom",
+        "C": "Çekirdek",
+        "D": "Mitokondri"
+      },
+      "DogruSecenek": "C"
+    },
+    {
+      "soruMetni": "Hücrede proteinlerin paketlenip taşınmasını sağlayan organel nedir?",
+      "cevap": "Golgi aygıtı",
+      "cozuldumu": "false",
+      "secenekler": {
+        "A": "Mitokondri",
+        "B": "Lizozom",
+        "C": "Golgi aygıtı",
+        "D": "Ribozom"
+      },
+      "DogruSecenek": "C"
+    },
+    {
+      "soruMetni": "Hücrede genetik bilginin okunmasını sağlayan süreç nedir?",
+      "cevap": "Transkripsiyon",
+      "cozuldumu": "false",
+      "secenekler": {
+        "A": "Transkripsiyon",
+        "B": "Translasyon",
+        "C": "Metabolizma",
+        "D": "Oksidatif fosforilasyon"
+      },
+      "DogruSecenek": "A"
+    },
+    {
+      "soruMetni": "Hücrelerde enerji üreten enzim hangisidir?",
+      "cevap": "ATPaz",
+      "cozuldumu": "false",
+      "secenekler": {
+        "A": "ATPaz",
+        "B": "Kloroz",
+        "C": "Klorofil",
+        "D": "Eritrosit"
+      },
+      "DogruSecenek": "A"
+    },
+    {
+      "soruMetni": "Hücre zarının seçici geçirgenliğini sağlayan özellik nedir?",
+      "cevap": "Fosfolipid çift tabaka",
+      "cozuldumu": "false",
+      "secenekler": {
+        "A": "Fosfolipid çift tabaka",
+        "B": "Translasyon",
+        "C": "Metabolizma",
+        "D": "Oksidatif fosforilasyon"
+      },
+      "DogruSecenek": "A"
+    },
+    {
+      "soruMetni": "Hücre bölünmesinde kromozomların ayrıldığı evre nedir?",
+      "cevap": "Anafaz",
+      "cozuldumu": "false",
+      "secenekler": {
+        "A": "Anafaz",
+        "B": "İnterfaz",
+        "C": "Metafaz",
+        "D": "Telofaz"
+      },
+      "DogruSecenek": "A"
+    },
+    {
+      "soruMetni": "Hücrede enerji üretiminde oksijenin kullanıldığı süreç nedir?",
+      "cevap": "Anaerobik solunum",
+      "cozuldumu": "false",
+      "secenekler": {
+        "A": "Fermantasyon",
+        "B": "Aerobik solunum",
+        "C": "Anaerobik solunum",
+        "D": "Kolik asit sentezi"
+      },
+      "DogruSecenek": "C"
+    }
+  ],
+  "EndokrinSistem": [
+    {
+      "soruMetni": "İnsan vücudunda hangi sistem hormon üretir?",
+      "cevap": "Endokrin sistem",
+      "cozuldumu": "false",
+      "secenekler": {
+        "A": "Sinir sistemi",
+        "B": "Endokrin sistem",
+        "C": "Sindirim sistemi",
+        "D": "Endokrin sistem"
+      },
+      "DogruSecenek": "B"
+    },
+    {
+      "soruMetni": "Hangi organ hem endokrin hem de ekzokrin işlev görür?",
+      "cevap": "Pankreas",
+      "cozuldumu": "false",
+      "secenekler": {
+        "A": "Pankreas",
+        "B": "Beyin",
+        "C": "Kalp",
+        "D": "Orta Beyin"
+      },
+      "DogruSecenek": "A"
+    },
+    {
+      "soruMetni": "Kan basıncını düzenleyen hormon sistemi hangisidir?",
+      "cevap": "Renin-Angiotensin-Aldosteron",
+      "cozuldumu": "false",
+      "secenekler": {
+        "A": "Adrenalin-Norepinefrin",
+        "B": "Renin-Angiotensin-Aldosteron",
+        "C": "Insulin-Glikojen",
+        "D": "Estradiol-Östrojen"
+      },
+      "DogruSecenek": "B"
+    },
+    {
+      "soruMetni": "Beyindeki açlık ve tokluk merkezleri hangi yapıda bulunur?",
+      "cevap": "Hipotalamus",
+      "cozuldumu": "false",
+      "secenekler": {
+        "A": "Hipofiz",
+        "B": "Hipokamp",
+        "C": "Talamus",
+        "D": "Hipotalamus"
+      },
+      "DogruSecenek": "D"
+    },
+    {
+      "soruMetni": "Vücutta stresle mücadelede görev alan hormon hangisidir?",
+      "cevap": "Kortizol",
+      "cozuldumu": "false",
+      "secenekler": {
+        "A": "Adrenalin",
+        "B": "Kortizol",
+        "C": "Testosteron",
+        "D": "Östrojen"
+      },
+      "DogruSecenek": "B"
+    }
+  ],
+  "SolunumSistemi": [
+    {
+      "soruMetni": "Vücutta oksijen alışverişi nerede gerçekleşir?",
+      "cevap": "Akciğerler",
+      "cozuldumu": false,
+      "secenekler": {
+        "A": "Kas",
+        "B": "Kalp",
+        "C": "Deri",
+        "D": "Akciğerler"
+      },
+      "DogruSecenek": "D"
+    },
+    {
+      "soruMetni": "Akciğerlerde gaz değişimi hangi yapıda gerçekleşir?",
+      "cevap": "Alveol",
+      "cozuldumu": "false",
+      "secenekler": {
+        "A": "Alveol",
+        "B": "Kanallar",
+        "C": "Kemik",
+        "D": "Kas"
+      },
+      "DogruSecenek": "A"
+    },
+    {
+      "soruMetni": "Solunum sırasında diyafram kasıldığında ne olur?",
+      "cevap": "Akciğerlere hava girer",
+      "cozuldumu": "false",
+      "secenekler": {
+        "A": "Hava dışarı çıkar",
+        "B": "Göğüs boşluğu daralır",
+        "C": "Akciğerler küçülür",
+        "D": "Akciğerlere hava girer"
+      },
+      "DogruSecenek": "D"
+    }
+  ],
+  "BagisiklikSistemi": [
+    {
+      "soruMetni": "Hangi sistem vücudu hastalıklara karşı korur?",
+      "cevap": "Bağışıklık sistemi",
+      "cozuldumu": "false",
+      "secenekler": {
+        "A": "Sinir sistemi",
+        "B": "Bağışıklık sistemi",
+        "C": "Sindirim sistemi",
+        "D": "Endokrin sistem"
+      },
+      "DogruSecenek": "B"
+    },
+    {
+      "soruMetni": "İmmün sistemde antikor üreten hücreler hangileridir?",
+      "cevap": "B lenfositler",
+      "cozuldumu": "false",
+      "secenekler": {
+        "A": "T lenfositler",
+        "B": "B lenfositler",
+        "C": "T lenfositler ve B lenfositler",
+        "D": "Makrofajlar"
+      },
+      "DogruSecenek": "B"
+    },
+    {
+      "soruMetni": "Bağışıklık sisteminde fagositoz yapan hücreler hangileridir?",
+      "cevap": "Makrofajlar",
+      "cozuldumu": "false",
+      "secenekler": {
+        "A": "Makrofajlar",
+        "B": "T lenfositler",
+        "C": "B lenfositler",
+        "D": "Eritrositler"
+      },
+      "DogruSecenek": "A"
+    }
+  ],
+  "GenelFizyolojiVeDiger": [
+    {
+      "soruMetni": "İnsan vücudunda en büyük organ hangisidir?",
+      "cevap": "Deri",
+      "cozuldumu": false,
+      "secenekler": {
+        "A": "Kas",
+        "B": "Kalp",
+        "C": "Deri",
+        "D": "Akciğer"
+      },
+      "DogruSecenek": "C"
+    },
+    {
+      "soruMetni": "Vücutta pH dengesini koruyan tampon sistemlerden biri hangisidir?",
+      "cevap": "Karbonik asit-bikarbonat sistem",
+      "cozuldumu": "false",
+      "secenekler": {
+        "A": "Sodyum-potasyum sistem",
+        "B": "Glikoz metobolizması",
+        "C": "Karbonik asit-bikarbonat sistem",
+        "D": "Kalsiyum-potasyum sistem"
+      },
+      "DogruSecenek": "C"
+    },
+    {
+      "soruMetni": "Vücutta suyun en fazla bulunduğu yer neresidir?",
+      "cevap": "Hücre içi sıvı",
+      "cozuldumu": "false",
+      "secenekler": {
+        "A": "Kan",
+        "B": "Hücre içi sıvı",
+        "C": "Hücre zarı",
+        "D": "Hücre dışı sıvı"
+      },
+      "DogruSecenek": "B"
+    }
+  ]
+}
