@@ -1,7 +1,6 @@
 using UnityEngine;
 using System.IO;
 using System.Collections.Generic;
-using Newtonsoft.Json;
 using System.Linq;
 
 [System.Serializable]
@@ -54,7 +53,7 @@ public class DatabaseManager : MonoBehaviour
         {
             string jsonString = File.ReadAllText(path);
 
-            loadedQuizData = JsonConvert.DeserializeObject<QuizRoot>(jsonString);
+            loadedQuizData = JsonUtility.FromJson<QuizRoot>(jsonString); // Bu satırı kullanın
 
             if (loadedQuizData == null || loadedQuizData.kategoriler == null || loadedQuizData.kategoriler.Count == 0)
             {
