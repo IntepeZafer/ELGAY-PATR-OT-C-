@@ -7,7 +7,7 @@ public class MenuManager : MonoBehaviour
     // Start butonuna tıklanınca çalışacak fonksiyon
     public void StartGame()
     {
-        SceneManager.LoadScene("SorularScene");
+        SceneManager.LoadScene("QuestionsScene");
     }
 
     // Oyunu kapatmak için (QuitButton için)
