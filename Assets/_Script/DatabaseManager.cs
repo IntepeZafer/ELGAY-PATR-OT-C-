@@ -1,17 +1,18 @@
 using UnityEngine;
 using System.Collections.Generic;
-using TMPro;
+using TMPro; // TextMeshPro kütüphanesi
 using UnityEngine.UI;
 
-// --- VERİ YAPILARI ---
+// --- 1. VERİ YAPILARI (MODELS) ---
 
 [System.Serializable]
 public class Soru
 {
     public string soruMetni;
-    public string A, B, C, D;
-    public string dogruCevap; // "A", "B", "C", "D"
+    public string A, B, C, D; // Seçenekler
+    public string dogruCevap; // "A", "B", "C" veya "D"
 
+    // Veri girişini kolaylaştırmak için Kurucu Fonksiyon
     public Soru(string soru, string a, string b, string c, string d, string dogru)
     {
         this.soruMetni = soru;
@@ -30,36 +31,46 @@ public class Kategori
     public List<Soru> sorular = new List<Soru>();
 }
 
-// --- YÖNETİCİ SINIF ---
+// --- 2. YÖNETİCİ SINIF (MANAGER) ---
 
 public class DatabaseManager : MonoBehaviour
 {
-    [Header("UI Bağlantıları")]
-    public TextMeshProUGUI kategoriBaslikText;
-    public TextMeshProUGUI soruMetniText;
-    public TextMeshProUGUI secenekAText;
-    public TextMeshProUGUI secenekBText;
-    public TextMeshProUGUI secenekCText;
-    public TextMeshProUGUI secenekDText;
-    public TextMeshProUGUI sonucText;
+    [Header("UI Bağlantıları (Sürükle-Bırak)")]
+    public TextMeshProUGUI kategoriBaslikText; // Hangi kategorideyiz?
+    public TextMeshProUGUI puanText;           // Puan Durumu
+    public TextMeshProUGUI soruMetniText;      // Soru Yazısı
+    public TextMeshProUGUI secenekAText;       // A Butonu Yazısı
+    public TextMeshProUGUI secenekBText;       // B Butonu Yazısı
+    public TextMeshProUGUI secenekCText;       // C Butonu Yazısı
+    public TextMeshProUGUI secenekDText;       // D Butonu Yazısı
+    public TextMeshProUGUI sonucText;          // Doğru/Yanlış Bildirimi
 
-    // Ana Veritabanı
+    // Tüm verilerin tutulduğu ana liste
     public List<Kategori> tumKategoriler = new List<Kategori>();
 
-    // Oynanan listenin kopyası (Karıştırılmış hali burada duracak)
+    // Oyun esnasında kullanılan değişkenler
     private List<Soru> aktifSoruListesi;
     private int suankiSoruIndex = 0;
     private string dogruSik;
+    
+    // Puan ve Durum Değişkenleri
+    private int toplamPuan = 0;
+    private bool cevapVerildiMi = false; // Spam engellemek için kilit
 
     void Start()
     {
+        // 1. Verileri oluştur
         VeritabaniniDoldur();
+        
+        // 2. Puanı sıfırla
+        PuanGuncelle(0);
 
-        // Oyunu başlat (İstediğin kategori adını yaz)
+        // 3. Oyunu başlat (Buraya başlamak istediğin kategorinin adını yaz)
+        // İleride burayı bir menüden butonla çağırabilirsin.
         KategoriBaslat("Sinir Sistemi");
     }
 
-    // --- MANUEL VERİ GİRİŞİ ---
+    // --- VERİ GİRİŞİ (HARDCODED DATA) ---
     void VeritabaniniDoldur()
     {
         tumKategoriler.Clear();
@@ -175,38 +186,36 @@ public class DatabaseManager : MonoBehaviour
         Debug.Log("✅ Tüm veriler kod üzerinden başarıyla yüklendi.");
     }
 
-    // --- KONTROL VE RASTGELELEŞTİRME ---
+    // --- 3. OYUN MANTIĞI VE KONTROLLER ---
 
     public void KategoriBaslat(string ad)
     {
+        // 1. İstenen kategoriyi bul
         Kategori secilen = tumKategoriler.Find(x => x.kategoriAdi == ad);
+
         if (secilen != null && secilen.sorular.Count > 0)
         {
+            // UI Başlığını güncelle
             if (kategoriBaslikText != null) kategoriBaslikText.text = secilen.kategoriAdi;
             
-            // LİSTEYİ KOPYALIYORUZ (Ana veritabanı bozulmasın diye)
+            // 2. Soruların kopyasını al (Ana listeyi bozmamak için)
             aktifSoruListesi = new List<Soru>(secilen.sorular);
             
-            // --- KARIŞTIRMA İŞLEMİ (SHUFFLE) BURADA YAPILIYOR ---
+            // 3. Soruları karıştır (Randomize)
             ListeyiKaristir(aktifSoruListesi);
-            // ----------------------------------------------------
 
+            // 4. Puanı sıfırla ve oyunu başlat
+            PuanGuncelle(0);
             suankiSoruIndex = 0;
             SoruGoster(0);
         }
         else
         {
-            Debug.LogError("Kategori bulunamadı: " + ad);
-            if(tumKategoriler.Count > 0)
-            {
-                aktifSoruListesi = new List<Soru>(tumKategoriler[0].sorular);
-                ListeyiKaristir(aktifSoruListesi);
-                SoruGoster(0);
-            }
+            Debug.LogError("HATA: '" + ad + "' adında bir kategori bulunamadı!");
         }
     }
 
-    // Fisher-Yates Shuffle Algoritması (Profesyonel Karıştırma)
+    // Fisher-Yates Karıştırma Algoritması
     void ListeyiKaristir(List<Soru> liste)
     {
         for (int i = 0; i < liste.Count; i++)
@@ -220,11 +229,16 @@ public class DatabaseManager : MonoBehaviour
 
     public void SoruGoster(int index)
     {
+        // Soru bitti mi kontrolü
         if (aktifSoruListesi == null || index >= aktifSoruListesi.Count)
         {
-            sonucText.text = "Kategori Tamamlandı!";
+            sonucText.text = "Oyun Bitti! Toplam Puanın: " + toplamPuan;
+            // Buraya "Oyun Sonu Paneli Aç" kodu gelebilir.
             return;
         }
+
+        // Yeni soruya geçince kilitleri aç
+        cevapVerildiMi = false; 
 
         Soru s = aktifSoruListesi[index];
         soruMetniText.text = s.soruMetni;
@@ -233,14 +247,23 @@ public class DatabaseManager : MonoBehaviour
         secenekCText.text = "C) " + s.C;
         secenekDText.text = "D) " + s.D;
         dogruSik = s.dogruCevap;
-        sonucText.text = "";
+        
+        sonucText.text = ""; // Sonuç yazısını temizle
     }
 
+    // Butonlara bağlanacak fonksiyon
     public void CevapVer(string secim)
     {
+        // Eğer zaten cevap verildiyse (spam yapılıyorsa) dur.
+        if (cevapVerildiMi == true) return;
+
+        cevapVerildiMi = true; // Kilidi kapat
+
         if (secim == dogruSik)
         {
-            sonucText.text = "<color=green>DOĞRU!</color>";
+            sonucText.text = "<color=green>DOĞRU! (+50 Puan)</color>";
+            toplamPuan += 50;
+            PuanGuncelle(toplamPuan);
         }
         else
         {
@@ -248,16 +271,26 @@ public class DatabaseManager : MonoBehaviour
         }
     }
 
+    void PuanGuncelle(int puan)
+    {
+        toplamPuan = puan;
+        if (puanText != null)
+        {
+            puanText.text = "Puan: " + toplamPuan.ToString();
+        }
+    }
+
     public void SonrakiSoru()
     {
         suankiSoruIndex++;
+        // Liste bitmediyse devam et
         if (aktifSoruListesi != null && suankiSoruIndex < aktifSoruListesi.Count)
         {
             SoruGoster(suankiSoruIndex);
         }
         else
         {
-            sonucText.text = "Sorular Bitti!";
+            sonucText.text = "Sorular Tamamlandı! Skor: " + toplamPuan;
         }
     }
 }
