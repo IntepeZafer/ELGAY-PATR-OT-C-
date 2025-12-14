@@ -29,7 +29,7 @@ public class Soru
 public class DatabaseManager : MonoBehaviour
 {
     [Header("TEXT NESNELERİ")]
-    public TextMeshProUGUI puanText;           
+    public TextMeshProUGUI puanText; // Bölüm puanı
     public TextMeshProUGUI canText; 
     public TextMeshProUGUI soruMetniText;      
     public TextMeshProUGUI secenekAText;       
@@ -57,42 +57,43 @@ public class DatabaseManager : MonoBehaviour
 
     private List<Soru> aktifSoruListesi;
     private string dogruSik;
-    private int toplamPuan = 0;
+    
+    private int toplamPuan = 0;   // O anki bölüm skoru
+    private int toplamCoin = 0;   // Kumbaradaki toplam para
     private int kalanCan = 3;
     private int sonKontrolPuani = 0;
     private bool cevapVerildiMi = false;
 
     void Start()
     {
-        // 1. Butonları Kur
+        // Butonları Kur
         if(butonA) { butonA.onClick.RemoveAllListeners(); butonA.onClick.AddListener(() => CevapVer("A")); }
         if(butonB) { butonB.onClick.RemoveAllListeners(); butonB.onClick.AddListener(() => CevapVer("B")); }
         if(butonC) { butonC.onClick.RemoveAllListeners(); butonC.onClick.AddListener(() => CevapVer("C")); }
         if(butonD) { butonD.onClick.RemoveAllListeners(); butonD.onClick.AddListener(() => CevapVer("D")); }
 
-        // 2. Panel Butonlarını Kur
+        // Panel Butonlarını Kur
         if(btnHarca) { btnHarca.onClick.RemoveAllListeners(); btnHarca.onClick.AddListener(MarketSahnesineGit); }
         if(btnDevam) { btnDevam.onClick.RemoveAllListeners(); btnDevam.onClick.AddListener(OyunaDevamEt); }
 
-        // 3. Paneli Gizle
         if(kararPaneli) kararPaneli.SetActive(false);
 
-        // 4. Verileri Yükle
         VeritabaniniDoldur();
         
-        // 5. Değerleri Sıfırla
         toplamPuan = 0;
         kalanCan = 3;
+
+        // --- ÖNEMLİ: Hafızadaki eski parayı yükle ---
+        // (Bunu yapmazsak her oyunda sıfırdan başlar)
+        toplamCoin = PlayerPrefs.GetInt("ToplamCoin", 0);
+
         UI_Guncelle();
 
-        // 6. HAFIZADAN SEÇİMİ OKU VE BAŞLAT
-        // Menüde (İskelet Sahnesi) seçilen ID buraya gelir.
+        // Hafızadan seçilen kategoriyi başlat
         int gelenID = PlayerPrefs.GetInt("SecilenKategoriID", 1);
-        Debug.Log("Başlatılan ID: " + gelenID);
         KategoriBaslat(gelenID);
     }
 
-    // --- OYUN AKIŞI ---
     public void KategoriBaslat(int istenenID)
     {
         aktifSoruListesi = tumSorularHavuzu.FindAll(x => x.kategoriID == istenenID);
@@ -104,7 +105,7 @@ public class DatabaseManager : MonoBehaviour
         }
         else
         {
-            if(sonucText) sonucText.text = "Bu ID (" + istenenID + ") için soru bulunamadı!";
+            if(sonucText) sonucText.text = "Soru bulunamadı!";
         }
     }
 
@@ -112,21 +113,19 @@ public class DatabaseManager : MonoBehaviour
     {
         if (aktifSoruListesi == null || index >= aktifSoruListesi.Count)
         {
-            if(sonucText) sonucText.text = "Bölüm Bitti! Menüye dönülüyor...";
+            if(sonucText) sonucText.text = "Bölüm Bitti!";
             Invoke("AnaMenuyeDon", 3f);
             return;
         }
 
         cevapVerildiMi = false; 
         Soru s = aktifSoruListesi[index];
-        
         soruMetniText.text = s.soruMetni;
         secenekAText.text = "A) " + s.A;
         secenekBText.text = "B) " + s.B;
         secenekCText.text = "C) " + s.C;
         secenekDText.text = "D) " + s.D;
         dogruSik = s.dogruCevap;
-        
         if(sonucText) sonucText.text = ""; 
     }
 
@@ -137,11 +136,18 @@ public class DatabaseManager : MonoBehaviour
 
         if (secilenSik == dogruSik)
         {
-            // DOĞRU
-            toplamPuan += 50;
-            sonucText.text = "<color=green>TEBRİKLER! DOĞRU.</color>";
+            // --- DOĞRU BİLİNCE ---
+            int kazanilan = 50; 
+
+            toplamPuan += kazanilan; // Bölüm puanı artar
+            toplamCoin += kazanilan; // Cüzdan artar
+
+            // --- PARAYI KAYDET (BANKAYA YATIR) ---
+            PlayerPrefs.SetInt("ToplamCoin", toplamCoin);
+            PlayerPrefs.Save();
+
+            sonucText.text = "<color=green>TEBRİKLER!</color>";
             
-            // 500 Puan Kontrolü
             if (toplamPuan > 0 && toplamPuan % 500 == 0 && toplamPuan > sonKontrolPuani)
             {
                 sonKontrolPuani = toplamPuan;
@@ -151,11 +157,9 @@ public class DatabaseManager : MonoBehaviour
         }
         else
         {
-            // YANLIŞ
             kalanCan--;
             Soru anlikSoru = aktifSoruListesi[0];
             string dogruMetin = (dogruSik=="A"?anlikSoru.A : (dogruSik=="B"?anlikSoru.B : (dogruSik=="C"?anlikSoru.C : anlikSoru.D)));
-            
             sonucText.text = $"<color=red>YANLIŞ!</color>\nDoğru Cevap: <color=yellow>{dogruMetin}</color>";
 
             if (kalanCan <= 0) Invoke("MarketSahnesineGit", 4f);
@@ -170,28 +174,26 @@ public class DatabaseManager : MonoBehaviour
         {
             aktifSoruListesi.RemoveAt(0); 
             if (aktifSoruListesi.Count > 0) SoruGoster(0);
-            else { 
-                if(sonucText) sonucText.text = "Sorular Bitti!"; 
-                Invoke("AnaMenuyeDon", 3f); 
-            }
+            else { sonucText.text = "Bölüm Bitti!"; Invoke("AnaMenuyeDon", 3f); }
         }
     }
 
-    // --- YARDIMCILAR ---
     void PaneliAc() { if(kararPaneli) kararPaneli.SetActive(true); }
     void OyunaDevamEt() { if(kararPaneli) kararPaneli.SetActive(false); SonrakiSoru(); }
-    void MarketSahnesineGit() { PlayerPrefs.SetInt("KazanilanPuan", toplamPuan); SceneManager.LoadScene("FarmScene"); } // Market sahne adı
+    void MarketSahnesineGit() { SceneManager.LoadScene("FarmScene"); } // Parayı göreceğin sahne adı
     void AnaMenuyeDon() { SceneManager.LoadScene("SampleScene"); } // İskelet sahne adı
     
-    void UI_Guncelle() { if(puanText) puanText.text = "PUAN: " + toplamPuan; if(canText) canText.text = "CAN: " + kalanCan; }
+    void UI_Guncelle() 
+    { 
+        if(puanText) puanText.text = "PUAN: " + toplamPuan; 
+        if(canText) canText.text = "CAN: " + kalanCan; 
+    }
+    
     void ListeyiKaristir(List<Soru> liste) { for (int i = 0; i < liste.Count; i++) { Soru temp = liste[i]; int rnd = Random.Range(i, liste.Count); liste[i] = liste[rnd]; liste[rnd] = temp; } }
 
-    // --- VERİTABANI ---
     void VeritabaniniDoldur()
     {
         tumSorularHavuzu.Clear();
-
-        // 1. SİNİR SİSTEMİ
         tumSorularHavuzu.Add(new Soru(1, "Beyin hangi kemik yapısının içinde yer alır?", "Kas", "Kalp", "Deri", "Kafatası", "D"));
         tumSorularHavuzu.Add(new Soru(1, "Vücut sıcaklığını düzenleyen beyin bölgesi hangisidir?", "Hipofiz", "Hipotalamus", "Hipokamp", "Epitalamus", "B"));
         tumSorularHavuzu.Add(new Soru(1, "Hafıza ve öğrenme süreçlerinde en çok rol oynayan beyin bölgesi hangisidir?", "Serebellum", "Hipotalamus", "Hipokampus", "Epitalamus", "C"));

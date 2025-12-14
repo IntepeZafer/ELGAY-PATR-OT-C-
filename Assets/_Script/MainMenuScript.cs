@@ -9,6 +9,10 @@ public class MenuManager : MonoBehaviour
     {
         SceneManager.LoadScene("biologyscane");
     }
+    public void farmscane()
+    {
+        SceneManager.LoadScene("AssetScene");
+    }
 
     // Oyunu kapatmak için (QuitButton için)
     public void QuitGame()
