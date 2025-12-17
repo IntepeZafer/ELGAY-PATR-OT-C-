@@ -30,7 +30,10 @@ public class DatabaseManager : MonoBehaviour
 {
     [Header("TEXT NESNELERİ")]
     public TextMeshProUGUI puanText; // Bölüm puanı
-    public TextMeshProUGUI canText; 
+    public TextMeshProUGUI canText;  // Kalan can
+    public TextMeshProUGUI coinText; // Toplam Coin (Para)
+
+    [Header("SORU ALANLARI")]
     public TextMeshProUGUI soruMetniText;      
     public TextMeshProUGUI secenekAText;       
     public TextMeshProUGUI secenekBText;       
@@ -83,14 +86,13 @@ public class DatabaseManager : MonoBehaviour
         toplamPuan = 0;
         kalanCan = 3;
 
-        // --- ÖNEMLİ: Hafızadaki eski parayı yükle ---
-        // (Bunu yapmazsak her oyunda sıfırdan başlar)
+        // --- HAFIZADAKİ PARAYI YÜKLE ---
         toplamCoin = PlayerPrefs.GetInt("ToplamCoin", 0);
-
         UI_Guncelle();
 
-        // Hafızadan seçilen kategoriyi başlat
+        // --- MENÜDEN SEÇİLEN KATEGORİYİ BAŞLAT ---
         int gelenID = PlayerPrefs.GetInt("SecilenKategoriID", 1);
+        Debug.Log("Menüden Gelen Kategori ID: " + gelenID);
         KategoriBaslat(gelenID);
     }
 
@@ -105,7 +107,7 @@ public class DatabaseManager : MonoBehaviour
         }
         else
         {
-            if(sonucText) sonucText.text = "Soru bulunamadı!";
+            if(sonucText) sonucText.text = "Bu kategori için soru bulunamadı! (ID: " + istenenID + ")";
         }
     }
 
@@ -139,10 +141,10 @@ public class DatabaseManager : MonoBehaviour
             // --- DOĞRU BİLİNCE ---
             int kazanilan = 50; 
 
-            toplamPuan += kazanilan; // Bölüm puanı artar
-            toplamCoin += kazanilan; // Cüzdan artar
+            toplamPuan += kazanilan; 
+            toplamCoin += kazanilan; 
 
-            // --- PARAYI KAYDET (BANKAYA YATIR) ---
+            // --- PARAYI KAYDET ---
             PlayerPrefs.SetInt("ToplamCoin", toplamCoin);
             PlayerPrefs.Save();
 
@@ -180,13 +182,14 @@ public class DatabaseManager : MonoBehaviour
 
     void PaneliAc() { if(kararPaneli) kararPaneli.SetActive(true); }
     void OyunaDevamEt() { if(kararPaneli) kararPaneli.SetActive(false); SonrakiSoru(); }
-    void MarketSahnesineGit() { SceneManager.LoadScene("FarmScene"); } // Parayı göreceğin sahne adı
-    void AnaMenuyeDon() { SceneManager.LoadScene("SampleScene"); } // İskelet sahne adı
+    void AnaMenuyeDon() { SceneManager.LoadScene("SampleScene"); } 
+    void MarketSahnesineGit() { SceneManager.LoadScene("FarmScene"); } 
     
     void UI_Guncelle() 
     { 
         if(puanText) puanText.text = "PUAN: " + toplamPuan; 
-        if(canText) canText.text = "CAN: " + kalanCan; 
+        if(canText) canText.text = "CAN: " + kalanCan;
+        if(coinText) coinText.text = "COIN: " + toplamCoin;
     }
     
     void ListeyiKaristir(List<Soru> liste) { for (int i = 0; i < liste.Count; i++) { Soru temp = liste[i]; int rnd = Random.Range(i, liste.Count); liste[i] = liste[rnd]; liste[rnd] = temp; } }
@@ -194,6 +197,10 @@ public class DatabaseManager : MonoBehaviour
     void VeritabaniniDoldur()
     {
         tumSorularHavuzu.Clear();
+
+        // -------------------------------------------------------------
+        // ID 1: SİNİR SİSTEMİ (Resimdeki 1. Sıra)
+        // -------------------------------------------------------------
         tumSorularHavuzu.Add(new Soru(1, "Beyin hangi kemik yapısının içinde yer alır?", "Kas", "Kalp", "Deri", "Kafatası", "D"));
         tumSorularHavuzu.Add(new Soru(1, "Vücut sıcaklığını düzenleyen beyin bölgesi hangisidir?", "Hipofiz", "Hipotalamus", "Hipokamp", "Epitalamus", "B"));
         tumSorularHavuzu.Add(new Soru(1, "Hafıza ve öğrenme süreçlerinde en çok rol oynayan beyin bölgesi hangisidir?", "Serebellum", "Hipotalamus", "Hipokampus", "Epitalamus", "C"));
@@ -210,7 +217,9 @@ public class DatabaseManager : MonoBehaviour
         tumSorularHavuzu.Add(new Soru(1, "Beyindeki hafıza oluşumunda görev alan yapı hangisidir?", "Hipofiz", "Hipokampus", "Talamus", "Hipotalamus", "B"));
         tumSorularHavuzu.Add(new Soru(1, "Beyindeki işitme ve konuşma merkezleri hangi lobda yer alır?", "Frontal", "Occipital", "Parietal", "Temporal", "D"));
 
-        // 2. DOLAŞIM SİSTEMİ
+        // -------------------------------------------------------------
+        // ID 2: DOLAŞIM SİSTEMİ (Resimdeki 2. Sıra)
+        // -------------------------------------------------------------
         tumSorularHavuzu.Add(new Soru(2, "Hangi organ oksijenli kanı vücuda pompalar?", "Kas", "Kalp", "Deri", "Akciğer", "B"));
         tumSorularHavuzu.Add(new Soru(2, "Oksijenli kanı vücuda pompalayan kalp bölümü hangisidir?", "Sol ventrikül", "Sağ ventrikül", "Aort kapağı", "Trakea", "A"));
         tumSorularHavuzu.Add(new Soru(2, "Kemik iliği hangi hücreleri üretir?", "Kas hücreleri", "Kan hücreleri", "Sperm hücreleri", "Kemik hücreleri", "B"));
@@ -223,7 +232,9 @@ public class DatabaseManager : MonoBehaviour
         tumSorularHavuzu.Add(new Soru(2, "Kalbin sağ kulakçığına gelen kan hangi damardan gelir?", "Vena Cava", "Vena Subclavia", "Vena Jugularis", "Vena Subclavia", "A"));
         tumSorularHavuzu.Add(new Soru(2, "Kalbin kasılma sırasında kanı pompaladığı evreye ne ad verilir?", "Diastol", "Sistol", "Eksol", "Vetrikül", "B"));
 
-        // 3. İSKELET SİSTEMİ
+        // -------------------------------------------------------------
+        // ID 3: İSKELET SİSTEMİ (Resimdeki 3. Sıra)
+        // -------------------------------------------------------------
         tumSorularHavuzu.Add(new Soru(3, "İnsan vücudunda kaç kemik vardır (yetişkinlerde)?", "206", "200", "204", "208", "A"));
         tumSorularHavuzu.Add(new Soru(3, "Kemik iliği hangi hücreleri üretir?", "Kas Hücreleri", "Kan hücreleri", "Sperm hücreleri", "Kemik hücreleri", "B"));
         tumSorularHavuzu.Add(new Soru(3, "Kemiklerin uç kısımlarında bulunan ve büyümeyi sağlayan yapı nedir?", "Osteoblast", "Osteoklast", "Epifiz plağı", "Osteokondrit", "C"));
@@ -233,7 +244,9 @@ public class DatabaseManager : MonoBehaviour
         tumSorularHavuzu.Add(new Soru(3, "Kasların kemiğe bağlandığı yapılar hangileridir?", "Kemik", "Kas", "Tendon", "Miyofibril", "C"));
         tumSorularHavuzu.Add(new Soru(3, "Kıkırdak dokunun beslenmesi nasıl gerçekleşir?", "Difüzyonla", "Endokrin yolla", "Kolonizasyonla", "Oksidatif fosforilasyonla", "A"));
 
-        // 4. KAS SİSTEMİ
+        // -------------------------------------------------------------
+        // ID 4: KAS SİSTEMİ (Resimdeki 4. Sıra)
+        // -------------------------------------------------------------
         tumSorularHavuzu.Add(new Soru(4, "Kas kasılması sırasında hangi iyon hücre içine girerek süreci başlatır?", "Kalsiyum", "Potasyum", "Sodyum", "Klor", "A"));
         tumSorularHavuzu.Add(new Soru(4, "Solunum sırasında diyafram kasıldığında ne olur?", "Hava dışarı çıkar", "Göğüs boşluğu daralır", "Akciğerler küçülür", "Akciğerlere hava girer", "D"));
         tumSorularHavuzu.Add(new Soru(4, "Mide hangi tür kaslarla kasılır?", "Sinirli Kas", "Düz Kas", "İskelet Kası", "Sarıkas", "B"));
@@ -241,46 +254,64 @@ public class DatabaseManager : MonoBehaviour
         tumSorularHavuzu.Add(new Soru(4, "Kalbin kas dokusu hangi özel kas türüdür?", "Sinirli kas", "İskelet kası", "Kalp kası", "Sarıkas", "C"));
         tumSorularHavuzu.Add(new Soru(4, "Kas dokusunun hücresel yapı taşlarından biri olan miyofibrillerin içindeki proteinler hangisidir?", "Hemoglobin ve mioglobin", "Kollajen ve elastin", "Eritrosit ve trombosit", "Aktin ve miyozin", "D"));
 
-        // 5. SİNDİRİM SİSTEMİ
-        tumSorularHavuzu.Add(new Soru(5, "Sindirim sisteminde besinlerin emildiği ana organ hangisidir?", "Kas", "Kalp", "Deri", "Bağırsak", "D"));
-        tumSorularHavuzu.Add(new Soru(5, "Hangi organ hem endokrin hem de ekzokrin işlev görür?", "Pankreas", "Beyin", "Kalp", "Orta Beyin", "A"));
-        tumSorularHavuzu.Add(new Soru(5, "Sindirim sisteminde yağların emilimi esas olarak nerede gerçekleşir?", "Kolosterol", "Mide", "Kalın bağırsak", "İnce bağırsak", "D"));
-        tumSorularHavuzu.Add(new Soru(5, "Mide hangi tür kaslarla kasılır?", "Sinirli Kas", "Düz Kas", "İskelet Kası", "Sarıkas", "B"));
-        tumSorularHavuzu.Add(new Soru(5, "Mide mukozasını koruyan madde hangisidir?", "Hemoglobin", "Müsin", "Klorofil", "Eritrosit", "B"));
-        tumSorularHavuzu.Add(new Soru(5, "Sindirim sisteminde enzimlerin etkili olabilmesi için gerekli pH ortamı nerede asidiktir?", "Pankreas", "Kalın bağırsak", "İnce bağırsak", "Mide", "D"));
+        // -------------------------------------------------------------
+        // ID 5: BAĞIŞIKLIK SİSTEMİ (Senin verdiğin ID: 9, Resimdeki Sıra: 5)
+        // (Kodda ID 5 olarak düzeltildi)
+        // -------------------------------------------------------------
+        tumSorularHavuzu.Add(new Soru(5, "Hangi sistem vücudu hastalıklara karşı korur?", "Sinir sistemi", "Bağışıklık sistemi", "Sindirim sistemi", "Endokrin sistem", "B"));
+        tumSorularHavuzu.Add(new Soru(5, "İmmün sistemde antikor üreten hücreler hangileridir?", "T lenfositler", "B lenfositler", "T ve B lenfositler", "Makrofajlar", "B"));
+        tumSorularHavuzu.Add(new Soru(5, "Bağışıklık sisteminde fagositoz yapan hücreler hangileridir?", "Makrofajlar", "T lenfositler", "B lenfositler", "Eritrositler", "A"));
 
-        // 6. HÜCRE BİYOLOJİSİ
-        tumSorularHavuzu.Add(new Soru(6, "İnsan vücudunda en küçük hücre hangisidir?", "Kas hücresi", "Kan hücresi", "Sperm hücresi", "Kemik hücresi", "C"));
-        tumSorularHavuzu.Add(new Soru(6, "Genetik materyalin bulunduğu hücre bölümü hangisidir?", "Sitoplazma", "Lizozom", "Çekirdek", "Mitokondri", "C"));
-        tumSorularHavuzu.Add(new Soru(6, "Hücrede proteinlerin paketlenip taşınmasını sağlayan organel nedir?", "Mitokondri", "Lizozom", "Golgi aygıtı", "Ribozom", "C"));
-        tumSorularHavuzu.Add(new Soru(6, "Hücrede genetik bilginin okunmasını sağlayan süreç nedir?", "Transkripsiyon", "Translasyon", "Metabolizma", "Oksidatif fosforilasyon", "A"));
-        tumSorularHavuzu.Add(new Soru(6, "Hücrelerde enerji üreten enzim hangisidir?", "ATPaz", "Kloroz", "Klorofil", "Eritrosit", "A"));
-        tumSorularHavuzu.Add(new Soru(6, "Hücre zarının seçici geçirgenliğini sağlayan özellik nedir?", "Fosfolipid çift tabaka", "Translasyon", "Metabolizma", "Oksidatif fosforilasyon", "A"));
-        tumSorularHavuzu.Add(new Soru(6, "Hücre bölünmesinde kromozomların ayrıldığı evre nedir?", "Anafaz", "İnterfaz", "Metafaz", "Telofaz", "A"));
-        tumSorularHavuzu.Add(new Soru(6, "Hücrede enerji üretiminde oksijenin kullanıldığı süreç nedir?", "Fermantasyon", "Aerobik solunum", "Anaerobik solunum", "Kolik asit sentezi", "C"));
+        // -------------------------------------------------------------
+        // ID 6: SİNDİRİM SİSTEMİ (Senin verdiğin ID: 5, Resimdeki Sıra: 6)
+        // (Kodda ID 6 olarak düzeltildi)
+        // -------------------------------------------------------------
+        tumSorularHavuzu.Add(new Soru(6, "Sindirim sisteminde besinlerin emildiği ana organ hangisidir?", "Kas", "Kalp", "Deri", "Bağırsak", "D"));
+        tumSorularHavuzu.Add(new Soru(6, "Hangi organ hem endokrin hem de ekzokrin işlev görür?", "Pankreas", "Beyin", "Kalp", "Orta Beyin", "A"));
+        tumSorularHavuzu.Add(new Soru(6, "Sindirim sisteminde yağların emilimi esas olarak nerede gerçekleşir?", "Kolosterol", "Mide", "Kalın bağırsak", "İnce bağırsak", "D"));
+        tumSorularHavuzu.Add(new Soru(6, "Mide hangi tür kaslarla kasılır?", "Sinirli Kas", "Düz Kas", "İskelet Kası", "Sarıkas", "B"));
+        tumSorularHavuzu.Add(new Soru(6, "Mide mukozasını koruyan madde hangisidir?", "Hemoglobin", "Müsin", "Klorofil", "Eritrosit", "B"));
+        tumSorularHavuzu.Add(new Soru(6, "Sindirim sisteminde enzimlerin etkili olabilmesi için gerekli pH ortamı nerede asidiktir?", "Pankreas", "Kalın bağırsak", "İnce bağırsak", "Mide", "D"));
 
-        // 7. ENDOKRİN SİSTEM
-        tumSorularHavuzu.Add(new Soru(7, "İnsan vücudunda hangi sistem hormon üretir?", "Sinir sistemi", "Endokrin sistem", "Sindirim sistemi", "Endokrin sistem", "B"));
-        tumSorularHavuzu.Add(new Soru(7, "Hangi organ hem endokrin hem de ekzokrin işlev görür?", "Pankreas", "Beyin", "Kalp", "Orta Beyin", "A"));
-        tumSorularHavuzu.Add(new Soru(7, "Kan basıncını düzenleyen hormon sistemi hangisidir?", "Adrenalin-Norepinefrin", "Renin-Angiotensin-Aldosteron", "Insulin-Glikojen", "Estradiol-Östrojen", "B"));
-        tumSorularHavuzu.Add(new Soru(7, "Beyindeki açlık ve tokluk merkezleri hangi yapıda bulunur?", "Hipofiz", "Hipokamp", "Talamus", "Hipotalamus", "D"));
-        tumSorularHavuzu.Add(new Soru(7, "Vücutta stresle mücadelede görev alan hormon hangisidir?", "Adrenalin", "Kortizol", "Testosteron", "Östrojen", "B"));
+        // -------------------------------------------------------------
+        // ID 7: HÜCRE BİYOLOJİSİ (Senin verdiğin ID: 6, Resimdeki Sıra: 7)
+        // (Kodda ID 7 olarak düzeltildi)
+        // -------------------------------------------------------------
+        tumSorularHavuzu.Add(new Soru(7, "İnsan vücudunda en küçük hücre hangisidir?", "Kas hücresi", "Kan hücresi", "Sperm hücresi", "Kemik hücresi", "C"));
+        tumSorularHavuzu.Add(new Soru(7, "Genetik materyalin bulunduğu hücre bölümü hangisidir?", "Sitoplazma", "Lizozom", "Çekirdek", "Mitokondri", "C"));
+        tumSorularHavuzu.Add(new Soru(7, "Hücrede proteinlerin paketlenip taşınmasını sağlayan organel nedir?", "Mitokondri", "Lizozom", "Golgi aygıtı", "Ribozom", "C"));
+        tumSorularHavuzu.Add(new Soru(7, "Hücrede genetik bilginin okunmasını sağlayan süreç nedir?", "Transkripsiyon", "Translasyon", "Metabolizma", "Oksidatif fosforilasyon", "A"));
+        tumSorularHavuzu.Add(new Soru(7, "Hücrelerde enerji üreten enzim hangisidir?", "ATPaz", "Kloroz", "Klorofil", "Eritrosit", "A"));
+        tumSorularHavuzu.Add(new Soru(7, "Hücre zarının seçici geçirgenliğini sağlayan özellik nedir?", "Fosfolipid çift tabaka", "Translasyon", "Metabolizma", "Oksidatif fosforilasyon", "A"));
+        tumSorularHavuzu.Add(new Soru(7, "Hücre bölünmesinde kromozomların ayrıldığı evre nedir?", "Anafaz", "İnterfaz", "Metafaz", "Telofaz", "A"));
+        tumSorularHavuzu.Add(new Soru(7, "Hücrede enerji üretiminde oksijenin kullanıldığı süreç nedir?", "Fermantasyon", "Aerobik solunum", "Anaerobik solunum", "Kolik asit sentezi", "C"));
 
-        // 8. SOLUNUM SİSTEMİ
-        tumSorularHavuzu.Add(new Soru(8, "Vücutta oksijen alışverişi nerede gerçekleşir?", "Kas", "Kalp", "Deri", "Akciğerler", "D"));
-        tumSorularHavuzu.Add(new Soru(8, "Akciğerlerde gaz değişimi hangi yapıda gerçekleşir?", "Alveol", "Kanallar", "Kemik", "Kas", "A"));
-        tumSorularHavuzu.Add(new Soru(8, "Solunum sırasında diyafram kasıldığında ne olur?", "Hava dışarı çıkar", "Göğüs boşluğu daralır", "Akciğerler küçülür", "Akciğerlere hava girer", "D"));
+        // -------------------------------------------------------------
+        // ID 8: GENEL FİZYOLOJİ (Senin verdiğin ID: 10, Resimdeki Sıra: 8)
+        // (Kodda ID 8 olarak düzeltildi)
+        // -------------------------------------------------------------
+        tumSorularHavuzu.Add(new Soru(8, "İnsan vücudunda en büyük organ hangisidir?", "Kas", "Kalp", "Deri", "Akciğer", "C"));
+        tumSorularHavuzu.Add(new Soru(8, "Vücutta pH dengesini koruyan tampon sistemlerden biri hangisidir?", "Sodyum-potasyum sistem", "Glikoz metobolizması", "Karbonik asit-bikarbonat sistem", "Kalsiyum-potasyum sistem", "C"));
+        tumSorularHavuzu.Add(new Soru(8, "Vücutta suyun en fazla bulunduğu yer neresidir?", "Kan", "Hücre içi sıvı", "Hücre zarı", "Hücre dışı sıvı", "B"));
 
-        // 9. BAĞIŞIKLIK SİSTEMİ
-        tumSorularHavuzu.Add(new Soru(9, "Hangi sistem vücudu hastalıklara karşı korur?", "Sinir sistemi", "Bağışıklık sistemi", "Sindirim sistemi", "Endokrin sistem", "B"));
-        tumSorularHavuzu.Add(new Soru(9, "İmmün sistemde antikor üreten hücreler hangileridir?", "T lenfositler", "B lenfositler", "T ve B lenfositler", "Makrofajlar", "B"));
-        tumSorularHavuzu.Add(new Soru(9, "Bağışıklık sisteminde fagositoz yapan hücreler hangileridir?", "Makrofajlar", "T lenfositler", "B lenfositler", "Eritrositler", "A"));
+        // -------------------------------------------------------------
+        // ID 9: ENDOKRİN SİSTEM (Senin verdiğin ID: 7, Resimdeki Sıra: 9)
+        // (Kodda ID 9 olarak düzeltildi)
+        // -------------------------------------------------------------
+        tumSorularHavuzu.Add(new Soru(9, "İnsan vücudunda hangi sistem hormon üretir?", "Sinir sistemi", "Endokrin sistem", "Sindirim sistemi", "Endokrin sistem", "B"));
+        tumSorularHavuzu.Add(new Soru(9, "Hangi organ hem endokrin hem de ekzokrin işlev görür?", "Pankreas", "Beyin", "Kalp", "Orta Beyin", "A"));
+        tumSorularHavuzu.Add(new Soru(9, "Kan basıncını düzenleyen hormon sistemi hangisidir?", "Adrenalin-Norepinefrin", "Renin-Angiotensin-Aldosteron", "Insulin-Glikojen", "Estradiol-Östrojen", "B"));
+        tumSorularHavuzu.Add(new Soru(9, "Beyindeki açlık ve tokluk merkezleri hangi yapıda bulunur?", "Hipofiz", "Hipokamp", "Talamus", "Hipotalamus", "D"));
+        tumSorularHavuzu.Add(new Soru(9, "Vücutta stresle mücadelede görev alan hormon hangisidir?", "Adrenalin", "Kortizol", "Testosteron", "Östrojen", "B"));
 
-        // 10. GENEL FİZYOLOJİ
-        tumSorularHavuzu.Add(new Soru(10, "İnsan vücudunda en büyük organ hangisidir?", "Kas", "Kalp", "Deri", "Akciğer", "C"));
-        tumSorularHavuzu.Add(new Soru(10, "Vücutta pH dengesini koruyan tampon sistemlerden biri hangisidir?", "Sodyum-potasyum sistem", "Glikoz metobolizması", "Karbonik asit-bikarbonat sistem", "Kalsiyum-potasyum sistem", "C"));
-        tumSorularHavuzu.Add(new Soru(10, "Vücutta suyun en fazla bulunduğu yer neresidir?", "Kan", "Hücre içi sıvı", "Hücre zarı", "Hücre dışı sıvı", "B"));
+        // -------------------------------------------------------------
+        // ID 10: SOLUNUM SİSTEMİ (Senin verdiğin ID: 8, Resimdeki Sıra: 10)
+        // (Kodda ID 10 olarak düzeltildi)
+        // -------------------------------------------------------------
+        tumSorularHavuzu.Add(new Soru(10, "Vücutta oksijen alışverişi nerede gerçekleşir?", "Kas", "Kalp", "Deri", "Akciğerler", "D"));
+        tumSorularHavuzu.Add(new Soru(10, "Akciğerlerde gaz değişimi hangi yapıda gerçekleşir?", "Alveol", "Kanallar", "Kemik", "Kas", "A"));
+        tumSorularHavuzu.Add(new Soru(10, "Solunum sırasında diyafram kasıldığında ne olur?", "Hava dışarı çıkar", "Göğüs boşluğu daralır", "Akciğerler küçülür", "Akciğerlere hava girer", "D"));
 
-        Debug.Log("✅ Tüm sorular yüklendi.");
+        Debug.Log("✅ Tüm sorular (Resimdeki Sıraya Göre) yüklendi.");
     }
 }
