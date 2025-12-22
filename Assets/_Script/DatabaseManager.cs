@@ -183,7 +183,7 @@ public class DatabaseManager : MonoBehaviour
     void PaneliAc() { if(kararPaneli) kararPaneli.SetActive(true); }
     void OyunaDevamEt() { if(kararPaneli) kararPaneli.SetActive(false); SonrakiSoru(); }
     void AnaMenuyeDon() { SceneManager.LoadScene("SampleScene"); } 
-    void MarketSahnesineGit() { SceneManager.LoadScene("FarmScene"); } 
+    void MarketSahnesineGit() { SceneManager.LoadScene("HospitalScene"); } 
     
     void UI_Guncelle() 
     { 
