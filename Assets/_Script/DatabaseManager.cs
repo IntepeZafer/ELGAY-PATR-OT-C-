@@ -12,7 +12,6 @@ public class Soru
     public string A, B, C, D; // Seçenekler
     public string dogruCevap; // "A", "B", "C" veya "D"
 
-    // Veri girişini kolaylaştırmak için Kurucu Fonksiyon
     public Soru(string soru, string a, string b, string c, string d, string dogru)
     {
         this.soruMetni = soru;
@@ -45,166 +44,92 @@ public class DatabaseManager : MonoBehaviour
     public TextMeshProUGUI secenekDText;       // D Butonu Yazısı
     public TextMeshProUGUI sonucText;          // Doğru/Yanlış Bildirimi
 
-    // Tüm verilerin tutulduğu ana liste
     public List<Kategori> tumKategoriler = new List<Kategori>();
 
-    // Oyun esnasında kullanılan değişkenler
     private List<Soru> aktifSoruListesi;
     private int suankiSoruIndex = 0;
     private string dogruSik;
     
-    // Puan ve Durum Değişkenleri
     private int toplamPuan = 0;
-    private bool cevapVerildiMi = false; // Spam engellemek için kilit
+    private bool cevapVerildiMi = false;
 
     void Start()
     {
-        // 1. Verileri oluştur
+        // 1. Verileri oluştur (Matematik Soruları)
         VeritabaniniDoldur();
         
         // 2. Puanı sıfırla
         PuanGuncelle(0);
 
-        // 3. Oyunu başlat (Buraya başlamak istediğin kategorinin adını yaz)
-        // İleride burayı bir menüden butonla çağırabilirsin.
-        KategoriBaslat("Sinir Sistemi");
+        // 3. Oyunu başlat (Varsayılan olarak Temel İşlemler açılır)
+        KategoriBaslat("Temel İşlemler");
     }
 
-    // --- VERİ GİRİŞİ (HARDCODED DATA) ---
+    // --- VERİ GİRİŞİ (MATEMATİK SORULARI) ---
     void VeritabaniniDoldur()
     {
         tumKategoriler.Clear();
 
-        // ---------------- SİNİR SİSTEMİ ----------------
-        Kategori sinir = new Kategori { kategoriAdi = "Sinir Sistemi" };
-        sinir.sorular.Add(new Soru("Beyin hangi kemik yapısının içinde yer alır?", "Kas", "Kalp", "Deri", "Kafatası", "D"));
-        sinir.sorular.Add(new Soru("Vücut sıcaklığını düzenleyen beyin bölgesi hangisidir?", "Hipofiz", "Hipotalamus", "Hipokamp", "Epitalamus", "B"));
-        sinir.sorular.Add(new Soru("Hafıza ve öğrenme süreçlerinde en çok rol oynayan beyin bölgesi hangisidir?", "Serebellum", "Hipotalamus", "Hipokampus", "Epitalamus", "C"));
-        sinir.sorular.Add(new Soru("Denge ve koordinasyon hangi beyin bölgesiyle sağlanır?", "Hipokampus", "Hipotalamus", "Serebrum", "Serebellum", "D"));
-        sinir.sorular.Add(new Soru("Vücutta ağrı algısını ileten sinir lifleri hangileridir?", "A lifleri", "B lifleri", "C lifleri", "D lifleri", "C"));
-        sinir.sorular.Add(new Soru("Beyin-omurilik sıvısı nerede üretilir?", "Koroid Pleksus", "Korteks", "Substans Paryetalis", "Substans Nigra", "A"));
-        sinir.sorular.Add(new Soru("Beynin görme ile ilgili bölgesi hangisidir?", "Frontal lop", "Parietal lop", "Oksipital lop", "Temporal lop", "C"));
-        sinir.sorular.Add(new Soru("Beyin ve omuriliği çevreleyen koruyucu zarlar hangileridir?", "Pia, archoid, dura mater", "Pia, dura mater, meninx", "Pia, dura mater, arachnoid", "Pia, archoid, meninx", "A"));
-        sinir.sorular.Add(new Soru("Beyindeki bilgi aktarım hızını artıran yapı nedir?", "Akson ucu", "Dendirit", "Miyelin kılıf", "Sinirli kas", "C"));
-        sinir.sorular.Add(new Soru("Beynin sol ve sağ yarım küresini bağlayan yapı nedir?", "Corpus callosum", "Splenum", "Pons", "Medulla oblongata", "A"));
-        sinir.sorular.Add(new Soru("Beyindeki duyusal bilgilerin toplanıp yönlendirildiği merkez hangisidir?", "Hipofiz", "Hipokamp", "Talamus", "Hipotalamus", "C"));
-        sinir.sorular.Add(new Soru("Beyindeki açlık ve tokluk merkezleri hangi yapıda bulunur?", "Hipofiz", "Hipokamp", "Talamus", "Hipotalamus", "D"));
-        sinir.sorular.Add(new Soru("Beyindeki hormon salgılayan bez hangisidir?", "Hipofiz", "Hipokamp", "Talamus", "Hipotalamus", "D"));
-        sinir.sorular.Add(new Soru("Beyindeki hafıza oluşumunda görev alan yapı hangisidir?", "Hipofiz", "Hipokampus", "Talamus", "Hipotalamus", "B"));
-        sinir.sorular.Add(new Soru("Beyindeki işitme ve konuşma merkezleri hangi lobda yer alır?", "Frontal", "Occipital", "Parietal", "Temporal", "D"));
-        tumKategoriler.Add(sinir);
+        // ---------------- 1. TEMEL İŞLEMLER ----------------
+        Kategori temel = new Kategori { kategoriAdi = "Temel İşlemler" };
+        temel.sorular.Add(new Soru("12 x 8 işleminin sonucu kaçtır?", "86", "96", "104", "108", "B"));
+        temel.sorular.Add(new Soru("144 / 12 işleminin sonucu kaçtır?", "10", "11", "12", "14", "C"));
+        temel.sorular.Add(new Soru("25 + 18 - 10 işleminin sonucu kaçtır?", "33", "35", "43", "23", "A"));
+        temel.sorular.Add(new Soru("5'in küpü (5³) kaçtır?", "25", "75", "100", "125", "D"));
+        temel.sorular.Add(new Soru("İşlem önceliğine göre: 5 + 3 x 4 = ?", "32", "17", "23", "20", "B"));
+        temel.sorular.Add(new Soru("Hangi sayı 2'ye kalansız bölünemez?", "128", "54", "91", "200", "C"));
+        temel.sorular.Add(new Soru("En küçük asal sayı kaçtır?", "1", "2", "3", "5", "B"));
+        temel.sorular.Add(new Soru("Yüzde 20'si 10 olan sayı kaçtır?", "40", "50", "60", "100", "B"));
+        tumKategoriler.Add(temel);
 
-        // ---------------- DOLAŞIM SİSTEMİ ----------------
-        Kategori dolasim = new Kategori { kategoriAdi = "Dolaşım Sistemi" };
-        dolasim.sorular.Add(new Soru("Hangi organ oksijenli kanı vücuda pompalar?", "Kas", "Kalp", "Deri", "Akciğer", "B"));
-        dolasim.sorular.Add(new Soru("Oksijenli kanı vücuda pompalayan kalp bölümü hangisidir?", "Sol ventrikül", "Sağ ventrikül", "Aort kapağı", "Trakea", "A"));
-        dolasim.sorular.Add(new Soru("Kemik iliği hangi hücreleri üretir?", "Kas hücreleri", "Kan hücreleri", "Sperm hücreleri", "Kemik hücreleri", "B"));
-        dolasim.sorular.Add(new Soru("Kan basıncını düzenleyen hormon sistemi hangisidir?", "Adrenalin-Norepinefrin", "Renin-Angiotensin-Aldosteron", "Insulin-Glikojen", "Estradiol-Östrojen", "B"));
-        dolasim.sorular.Add(new Soru("Kanın vücutta dolaşımını sağlayan damar türü hangisidir?", "Arter", "Ven", "Arterioven", "Kapiller", "A"));
-        dolasim.sorular.Add(new Soru("Alyuvarların ömrü ortalama ne kadardır?", "30 gün", "60 gün", "90 gün", "120 gün", "D"));
-        dolasim.sorular.Add(new Soru("Kanın kalbe geri dönüşünü sağlayan damarlar hangileridir?", "Arterler", "Venler", "Arterioven", "Kapiller", "B"));
-        dolasim.sorular.Add(new Soru("Kalbin kas dokusu hangi özel kas türüdür?", "Sinirli kas", "İskelet kası", "Kalp kası", "Sarıkas", "C"));
-        dolasim.sorular.Add(new Soru("Kanın damar dışına çıkmasını engelleyen süreç nedir?", "Transkripsiyon", "Koagülasyon", "Metabolizma", "Oksidatif fosforilasyon", "B"));
-        dolasim.sorular.Add(new Soru("Kalbin sağ kulakçığına gelen kan hangi damardan gelir?", "Vena Cava", "Vena Subclavia", "Vena Jugularis", "Vena Subclavia", "A"));
-        dolasim.sorular.Add(new Soru("Kalbin kasılma sırasında kanı pompaladığı evreye ne ad verilir?", "Diastol", "Sistol", "Eksol", "Vetrikül", "B"));
-        tumKategoriler.Add(dolasim);
+        // ---------------- 2. CEBİR ----------------
+        Kategori cebir = new Kategori { kategoriAdi = "Cebir" };
+        cebir.sorular.Add(new Soru("2x = 10 ise x kaçtır?", "2", "5", "8", "10", "B"));
+        cebir.sorular.Add(new Soru("3x + 5 = 20 denkleminde x kaçtır?", "3", "4", "5", "6", "C"));
+        cebir.sorular.Add(new Soru("x - 7 = 13 ise x kaçtır?", "6", "13", "20", "21", "C"));
+        cebir.sorular.Add(new Soru("4a = 24 ise, a + 5 kaçtır?", "6", "9", "11", "15", "C"));
+        cebir.sorular.Add(new Soru("y/3 = 4 ise y kaçtır?", "7", "1", "12", "16", "C"));
+        cebir.sorular.Add(new Soru("2(x+1) = 12 ise x kaçtır?", "4", "5", "6", "7", "B"));
+        cebir.sorular.Add(new Soru("x'in karesi 49 ise x pozitif olarak kaçtır?", "5", "6", "7", "9", "C"));
+        tumKategoriler.Add(cebir);
 
-        // ---------------- İSKELET SİSTEMİ ----------------
-        Kategori iskelet = new Kategori { kategoriAdi = "İskelet Sistemi" };
-        iskelet.sorular.Add(new Soru("İnsan vücudunda kaç kemik vardır (yetişkinlerde)?", "206", "200", "204", "208", "A"));
-        iskelet.sorular.Add(new Soru("Kemik iliği hangi hücreleri üretir?", "Kas Hücreleri", "Kan hücreleri", "Sperm hücreleri", "Kemik hücreleri", "B"));
-        iskelet.sorular.Add(new Soru("Kemiklerin uç kısımlarında bulunan ve büyümeyi sağlayan yapı nedir?", "Osteoblast", "Osteoklast", "Epifiz plağı", "Osteokondrit", "C"));
-        iskelet.sorular.Add(new Soru("Kemik dokusunun yıkımını gerçekleştiren hücreler hangileridir?", "Osteoklastlar", "Osteoblastlar", "Osteokondritler", "Osteofiller", "A"));
-        iskelet.sorular.Add(new Soru("Kemik dokusunun yeniden yapılandırılmasında rol oynayan hücreler hangileridir?", "Osteoklastlar", "Osteoblastlar", "Osteokondritler", "Osteofiller", "B"));
-        iskelet.sorular.Add(new Soru("Kemiklerin sertliğini sağlayan mineral nedir?", "Kalsiyum fosfat", "Kalsiyum klorür", "Kalsiyum karbonat", "Kalsiyum sitrat", "A"));
-        iskelet.sorular.Add(new Soru("Kasların kemiğe bağlandığı yapılar hangileridir?", "Kemik", "Kas", "Tendon", "Miyofibril", "C"));
-        iskelet.sorular.Add(new Soru("Kıkırdak dokunun beslenmesi nasıl gerçekleşir?", "Difüzyonla", "Endokrin yolla", "Kolonizasyonla", "Oksidatif fosforilasyonla", "A"));
-        tumKategoriler.Add(iskelet);
+        // ---------------- 3. GEOMETRİ ----------------
+        Kategori geometri = new Kategori { kategoriAdi = "Geometri" };
+        geometri.sorular.Add(new Soru("Bir üçgenin iç açıları toplamı kaç derecedir?", "90", "180", "270", "360", "B"));
+        geometri.sorular.Add(new Soru("Karenin bir kenarı 5 cm ise alanı kaç cm² dir?", "20", "10", "15", "25", "D"));
+        geometri.sorular.Add(new Soru("Dik açılı bir üçgende en uzun kenara ne ad verilir?", "Dik kenar", "Hipotenüs", "Yanal kenar", "Taban", "B"));
+        geometri.sorular.Add(new Soru("Dairenin çevresini hesaplarken kullanılan sabit sayı hangisidir?", "Pi (π)", "E sayısı", "Delta", "Sigma", "A"));
+        geometri.sorular.Add(new Soru("Dört kenarı eşit ve açıları 90 derece olan dörtgen hangisidir?", "Dikdörtgen", "Eşkenar Dörtgen", "Kare", "Yamuk", "C"));
+        geometri.sorular.Add(new Soru("Bir doğru açının ölçüsü kaç derecedir?", "90", "180", "360", "45", "B"));
+        geometri.sorular.Add(new Soru("Çapı 10 cm olan bir çemberin yarıçapı kaç cm'dir?", "2", "5", "10", "20", "B"));
+        tumKategoriler.Add(geometri);
 
-        // ---------------- KAS SİSTEMİ ----------------
-        Kategori kas = new Kategori { kategoriAdi = "Kas Sistemi" };
-        kas.sorular.Add(new Soru("Kas kasılması sırasında hangi iyon hücre içine girerek süreci başlatır?", "Kalsiyum", "Potasyum", "Sodyum", "Klor", "A"));
-        kas.sorular.Add(new Soru("Solunum sırasında diyafram kasıldığında ne olur?", "Hava dışarı çıkar", "Göğüs boşluğu daralır", "Akciğerler küçülür", "Akciğerlere hava girer", "D"));
-        kas.sorular.Add(new Soru("Mide hangi tür kaslarla kasılır?", "Sinirli Kas", "Düz Kas", "İskelet Kası", "Sarıkas", "B"));
-        kas.sorular.Add(new Soru("Kasların oksijen ihtiyacını karşılayan pigment hangisidir?", "Eritrosit", "Hemoglobin", "Mioglobin", "Klorofil", "C"));
-        kas.sorular.Add(new Soru("Kalbin kas dokusu hangi özel kas türüdür?", "Sinirli kas", "İskelet kası", "Kalp kası", "Sarıkas", "C"));
-        kas.sorular.Add(new Soru("Kas dokusunun hücresel yapı taşlarından biri olan miyofibrillerin içindeki proteinler hangisidir?", "Hemoglobin ve mioglobin", "Kollajen ve elastin", "Eritrosit ve trombosit", "Aktin ve miyozin", "D"));
-        tumKategoriler.Add(kas);
+        // ---------------- 4. PROBLEMLER ----------------
+        Kategori problemler = new Kategori { kategoriAdi = "Problemler" };
+        problemler.sorular.Add(new Soru("Saatte 60 km hızla giden bir araç 3 saatte kaç km gider?", "120", "150", "180", "200", "C"));
+        problemler.sorular.Add(new Soru("Ali'nin yaşı 12, Ayşe'nin yaşı Ali'den 5 fazladır. Ayşe kaç yaşındadır?", "15", "16", "17", "18", "C"));
+        problemler.sorular.Add(new Soru("Bir manavda elmanın kilosu 5 TL'dir. 4 kilo elma ne kadar tutar?", "15 TL", "20 TL", "25 TL", "30 TL", "B"));
+        problemler.sorular.Add(new Soru("Yarısı 15 olan sayının tamamı kaçtır?", "25", "30", "45", "7.5", "B"));
+        problemler.sorular.Add(new Soru("Bir deste kalem kaç adettir?", "10", "12", "15", "20", "A"));
+        problemler.sorular.Add(new Soru("Bir düzine kalem kaç adettir?", "10", "12", "15", "20", "B"));
+        tumKategoriler.Add(problemler);
 
-        // ---------------- SİNDİRİM SİSTEMİ ----------------
-        Kategori sindirim = new Kategori { kategoriAdi = "Sindirim Sistemi" };
-        sindirim.sorular.Add(new Soru("Sindirim sisteminde besinlerin emildiği ana organ hangisidir?", "Kas", "Kalp", "Deri", "Bağırsak", "D"));
-        sindirim.sorular.Add(new Soru("Hangi organ hem endokrin hem de ekzokrin işlev görür?", "Pankreas", "Beyin", "Kalp", "Orta Beyin", "A"));
-        sindirim.sorular.Add(new Soru("Sindirim sisteminde yağların emilimi esas olarak nerede gerçekleşir?", "Kolosterol", "Mide", "Kalın bağırsak", "İnce bağırsak", "D"));
-        sindirim.sorular.Add(new Soru("Mide hangi tür kaslarla kasılır?", "Sinirli Kas", "Düz Kas", "İskelet Kası", "Sarıkas", "B"));
-        sindirim.sorular.Add(new Soru("Mide mukozasını koruyan madde hangisidir?", "Hemoglobin", "Müsin", "Klorofil", "Eritrosit", "B"));
-        sindirim.sorular.Add(new Soru("Sindirim sisteminde enzimlerin etkili olabilmesi için gerekli pH ortamı nerede asidiktir?", "Pankreas", "Kalın bağırsak", "İnce bağırsak", "Mide", "D"));
-        tumKategoriler.Add(sindirim);
-
-        // ---------------- HÜCRE BİYOLOJİSİ ----------------
-        Kategori hucre = new Kategori { kategoriAdi = "Hücre Biyolojisi" };
-        hucre.sorular.Add(new Soru("İnsan vücudunda en küçük hücre hangisidir?", "Kas hücresi", "Kan hücresi", "Sperm hücresi", "Kemik hücresi", "C"));
-        hucre.sorular.Add(new Soru("Genetik materyalin bulunduğu hücre bölümü hangisidir?", "Sitoplazma", "Lizozom", "Çekirdek", "Mitokondri", "C"));
-        hucre.sorular.Add(new Soru("Hücrede proteinlerin paketlenip taşınmasını sağlayan organel nedir?", "Mitokondri", "Lizozom", "Golgi aygıtı", "Ribozom", "C"));
-        hucre.sorular.Add(new Soru("Hücrede genetik bilginin okunmasını sağlayan süreç nedir?", "Transkripsiyon", "Translasyon", "Metabolizma", "Oksidatif fosforilasyon", "A"));
-        hucre.sorular.Add(new Soru("Hücrelerde enerji üreten enzim hangisidir?", "ATPaz", "Kloroz", "Klorofil", "Eritrosit", "A"));
-        hucre.sorular.Add(new Soru("Hücre zarının seçici geçirgenliğini sağlayan özellik nedir?", "Fosfolipid çift tabaka", "Translasyon", "Metabolizma", "Oksidatif fosforilasyon", "A"));
-        hucre.sorular.Add(new Soru("Hücre bölünmesinde kromozomların ayrıldığı evre nedir?", "Anafaz", "İnterfaz", "Metafaz", "Telofaz", "A"));
-        hucre.sorular.Add(new Soru("Hücrede enerji üretiminde oksijenin kullanıldığı süreç nedir?", "Fermantasyon", "Aerobik solunum", "Anaerobik solunum", "Kolik asit sentezi", "C"));
-        tumKategoriler.Add(hucre);
-
-        // ---------------- ENDOKRİN SİSTEM ----------------
-        Kategori endokrin = new Kategori { kategoriAdi = "Endokrin Sistem" };
-        endokrin.sorular.Add(new Soru("İnsan vücudunda hangi sistem hormon üretir?", "Sinir sistemi", "Endokrin sistem", "Sindirim sistemi", "Endokrin sistem", "B"));
-        endokrin.sorular.Add(new Soru("Hangi organ hem endokrin hem de ekzokrin işlev görür?", "Pankreas", "Beyin", "Kalp", "Orta Beyin", "A"));
-        endokrin.sorular.Add(new Soru("Kan basıncını düzenleyen hormon sistemi hangisidir?", "Adrenalin-Norepinefrin", "Renin-Angiotensin-Aldosteron", "Insulin-Glikojen", "Estradiol-Östrojen", "B"));
-        endokrin.sorular.Add(new Soru("Beyindeki açlık ve tokluk merkezleri hangi yapıda bulunur?", "Hipofiz", "Hipokamp", "Talamus", "Hipotalamus", "D"));
-        endokrin.sorular.Add(new Soru("Vücutta stresle mücadelede görev alan hormon hangisidir?", "Adrenalin", "Kortizol", "Testosteron", "Östrojen", "B"));
-        tumKategoriler.Add(endokrin);
-
-        // ---------------- SOLUNUM SİSTEMİ ----------------
-        Kategori solunum = new Kategori { kategoriAdi = "Solunum Sistemi" };
-        solunum.sorular.Add(new Soru("Vücutta oksijen alışverişi nerede gerçekleşir?", "Kas", "Kalp", "Deri", "Akciğerler", "D"));
-        solunum.sorular.Add(new Soru("Akciğerlerde gaz değişimi hangi yapıda gerçekleşir?", "Alveol", "Kanallar", "Kemik", "Kas", "A"));
-        solunum.sorular.Add(new Soru("Solunum sırasında diyafram kasıldığında ne olur?", "Hava dışarı çıkar", "Göğüs boşluğu daralır", "Akciğerler küçülür", "Akciğerlere hava girer", "D"));
-        tumKategoriler.Add(solunum);
-
-        // ---------------- BAĞIŞIKLIK SİSTEMİ ----------------
-        Kategori bagisiklik = new Kategori { kategoriAdi = "Bağışıklık Sistemi" };
-        bagisiklik.sorular.Add(new Soru("Hangi sistem vücudu hastalıklara karşı korur?", "Sinir sistemi", "Bağışıklık sistemi", "Sindirim sistemi", "Endokrin sistem", "B"));
-        bagisiklik.sorular.Add(new Soru("İmmün sistemde antikor üreten hücreler hangileridir?", "T lenfositler", "B lenfositler", "T ve B lenfositler", "Makrofajlar", "B"));
-        bagisiklik.sorular.Add(new Soru("Bağışıklık sisteminde fagositoz yapan hücreler hangileridir?", "Makrofajlar", "T lenfositler", "B lenfositler", "Eritrositler", "A"));
-        tumKategoriler.Add(bagisiklik);
-
-        // ---------------- GENEL FİZYOLOJİ ----------------
-        Kategori genel = new Kategori { kategoriAdi = "Genel Fizyoloji" };
-        genel.sorular.Add(new Soru("İnsan vücudunda en büyük organ hangisidir?", "Kas", "Kalp", "Deri", "Akciğer", "C"));
-        genel.sorular.Add(new Soru("Vücutta pH dengesini koruyan tampon sistemlerden biri hangisidir?", "Sodyum-potasyum sistem", "Glikoz metobolizması", "Karbonik asit-bikarbonat sistem", "Kalsiyum-potasyum sistem", "C"));
-        genel.sorular.Add(new Soru("Vücutta suyun en fazla bulunduğu yer neresidir?", "Kan", "Hücre içi sıvı", "Hücre zarı", "Hücre dışı sıvı", "B"));
-        tumKategoriler.Add(genel);
-
-        Debug.Log("✅ Tüm veriler kod üzerinden başarıyla yüklendi.");
+        Debug.Log("✅ Matematik soruları başarıyla yüklendi.");
     }
 
-    // --- 3. OYUN MANTIĞI VE KONTROLLER ---
+    // --- 3. OYUN MANTIĞI VE KONTROLLER (Aynı Kaldı) ---
 
     public void KategoriBaslat(string ad)
     {
-        // 1. İstenen kategoriyi bul
         Kategori secilen = tumKategoriler.Find(x => x.kategoriAdi == ad);
 
         if (secilen != null && secilen.sorular.Count > 0)
         {
-            // UI Başlığını güncelle
             if (kategoriBaslikText != null) kategoriBaslikText.text = secilen.kategoriAdi;
             
-            // 2. Soruların kopyasını al (Ana listeyi bozmamak için)
             aktifSoruListesi = new List<Soru>(secilen.sorular);
-            
-            // 3. Soruları karıştır (Randomize)
             ListeyiKaristir(aktifSoruListesi);
 
-            // 4. Puanı sıfırla ve oyunu başlat
             PuanGuncelle(0);
             suankiSoruIndex = 0;
             SoruGoster(0);
@@ -215,7 +140,6 @@ public class DatabaseManager : MonoBehaviour
         }
     }
 
-    // Fisher-Yates Karıştırma Algoritması
     void ListeyiKaristir(List<Soru> liste)
     {
         for (int i = 0; i < liste.Count; i++)
@@ -229,15 +153,12 @@ public class DatabaseManager : MonoBehaviour
 
     public void SoruGoster(int index)
     {
-        // Soru bitti mi kontrolü
         if (aktifSoruListesi == null || index >= aktifSoruListesi.Count)
         {
             sonucText.text = "Oyun Bitti! Toplam Puanın: " + toplamPuan;
-            // Buraya "Oyun Sonu Paneli Aç" kodu gelebilir.
             return;
         }
 
-        // Yeni soruya geçince kilitleri aç
         cevapVerildiMi = false; 
 
         Soru s = aktifSoruListesi[index];
@@ -248,16 +169,14 @@ public class DatabaseManager : MonoBehaviour
         secenekDText.text = "D) " + s.D;
         dogruSik = s.dogruCevap;
         
-        sonucText.text = ""; // Sonuç yazısını temizle
+        sonucText.text = ""; 
     }
 
-    // Butonlara bağlanacak fonksiyon
     public void CevapVer(string secim)
     {
-        // Eğer zaten cevap verildiyse (spam yapılıyorsa) dur.
         if (cevapVerildiMi == true) return;
 
-        cevapVerildiMi = true; // Kilidi kapat
+        cevapVerildiMi = true; 
 
         if (secim == dogruSik)
         {
@@ -283,7 +202,6 @@ public class DatabaseManager : MonoBehaviour
     public void SonrakiSoru()
     {
         suankiSoruIndex++;
-        // Liste bitmediyse devam et
         if (aktifSoruListesi != null && suankiSoruIndex < aktifSoruListesi.Count)
         {
             SoruGoster(suankiSoruIndex);
