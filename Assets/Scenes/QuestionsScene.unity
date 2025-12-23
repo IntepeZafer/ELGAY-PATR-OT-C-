@@ -163,6 +163,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac1d909356b6ead49bf575bbb43748a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+<<<<<<< Updated upstream
   puanText: {fileID: 156454373}
   canText: {fileID: 327352193}
   soruMetniText: {fileID: 2063171505}
@@ -323,6 +324,19 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+=======
+  kategoriBaslikText: {fileID: 0}
+  puanText: {fileID: 0}
+  soruMetniText: {fileID: 0}
+  secenekAText: {fileID: 0}
+  secenekBText: {fileID: 0}
+  secenekCText: {fileID: 0}
+  secenekDText: {fileID: 0}
+  sonucText: {fileID: 0}
+  tumKategoriler:
+  - kategoriAdi: 
+    sorular: []
+>>>>>>> Stashed changes
 --- !u!1 &131696587
 GameObject:
   m_ObjectHideFlags: 0
@@ -1772,6 +1786,7 @@ MonoBehaviour:
   m_LightCookieSize: {x: 1, y: 1}
   m_LightCookieOffset: {x: 0, y: 0}
   m_SoftShadowQuality: 0
+<<<<<<< Updated upstream
 --- !u!1 &1234273920
 GameObject:
   m_ObjectHideFlags: 0
@@ -2120,6 +2135,8 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1565259840}
   m_CullTransparentMesh: 1
+=======
+>>>>>>> Stashed changes
 --- !u!1 &1680898915
 GameObject:
   m_ObjectHideFlags: 0
@@ -2152,6 +2169,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2056200571}
+<<<<<<< Updated upstream
   - {fileID: 55649927}
   - {fileID: 2032287094}
   - {fileID: 2031937286}
@@ -2164,6 +2182,8 @@ RectTransform:
   - {fileID: 822441825}
   - {fileID: 894793626}
   - {fileID: 327352191}
+=======
+>>>>>>> Stashed changes
   m_Father: {fileID: 2085858517}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -2234,6 +2254,7 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
+<<<<<<< Updated upstream
 --- !u!1 &1843432989
 GameObject:
   m_ObjectHideFlags: 0
@@ -2922,6 +2943,8 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2032287093}
   m_CullTransparentMesh: 1
+=======
+>>>>>>> Stashed changes
 --- !u!1 &2056200570
 GameObject:
   m_ObjectHideFlags: 0
@@ -2951,8 +2974,7 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 2063171504}
+  m_Children: []
   m_Father: {fileID: 1680898916}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -2980,8 +3002,13 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
+<<<<<<< Updated upstream
   m_Sprite: {fileID: 1546048498, guid: c807c8bd8347bc14f978b29b3259a438, type: 3}
   m_Type: 1
+=======
+  m_Sprite: {fileID: 21300000, guid: 96bee37137899ee1e95c8766125672d7, type: 3}
+  m_Type: 0
+>>>>>>> Stashed changes
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -2998,6 +3025,7 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2056200570}
   m_CullTransparentMesh: 1
+<<<<<<< Updated upstream
 --- !u!1 &2063171503
 GameObject:
   m_ObjectHideFlags: 0
@@ -3267,6 +3295,8 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2083220945}
   m_CullTransparentMesh: 1
+=======
+>>>>>>> Stashed changes
 --- !u!1 &2085858516
 GameObject:
   m_ObjectHideFlags: 0
