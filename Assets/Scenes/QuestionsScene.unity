@@ -164,6 +164,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
   puanText: {fileID: 156454373}
   canText: {fileID: 327352193}
   soruMetniText: {fileID: 2063171505}
@@ -325,6 +326,8 @@ MonoBehaviour:
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
 =======
+=======
+>>>>>>> Stashed changes
   kategoriBaslikText: {fileID: 0}
   puanText: {fileID: 0}
   soruMetniText: {fileID: 0}
@@ -336,6 +339,9 @@ MonoBehaviour:
   tumKategoriler:
   - kategoriAdi: 
     sorular: []
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 --- !u!1 &131696587
 GameObject:
@@ -1787,6 +1793,7 @@ MonoBehaviour:
   m_LightCookieOffset: {x: 0, y: 0}
   m_SoftShadowQuality: 0
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 --- !u!1 &1234273920
 GameObject:
   m_ObjectHideFlags: 0
@@ -2137,6 +2144,8 @@ CanvasRenderer:
   m_CullTransparentMesh: 1
 =======
 >>>>>>> Stashed changes
+=======
+>>>>>>> Stashed changes
 --- !u!1 &1680898915
 GameObject:
   m_ObjectHideFlags: 0
@@ -2170,6 +2179,7 @@ RectTransform:
   m_Children:
   - {fileID: 2056200571}
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
   - {fileID: 55649927}
   - {fileID: 2032287094}
   - {fileID: 2031937286}
@@ -2182,6 +2192,8 @@ RectTransform:
   - {fileID: 822441825}
   - {fileID: 894793626}
   - {fileID: 327352191}
+=======
+>>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
   m_Father: {fileID: 2085858517}
@@ -2254,6 +2266,7 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
+<<<<<<< Updated upstream
 <<<<<<< Updated upstream
 --- !u!1 &1843432989
 GameObject:
@@ -2945,6 +2958,8 @@ CanvasRenderer:
   m_CullTransparentMesh: 1
 =======
 >>>>>>> Stashed changes
+=======
+>>>>>>> Stashed changes
 --- !u!1 &2056200570
 GameObject:
   m_ObjectHideFlags: 0
@@ -3003,9 +3018,12 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
   m_Sprite: {fileID: 1546048498, guid: c807c8bd8347bc14f978b29b3259a438, type: 3}
   m_Type: 1
 =======
+=======
+>>>>>>> Stashed changes
   m_Sprite: {fileID: 21300000, guid: 96bee37137899ee1e95c8766125672d7, type: 3}
   m_Type: 0
 >>>>>>> Stashed changes
@@ -3025,6 +3043,7 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2056200570}
   m_CullTransparentMesh: 1
+<<<<<<< Updated upstream
 <<<<<<< Updated upstream
 --- !u!1 &2063171503
 GameObject:
@@ -3295,6 +3314,8 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2083220945}
   m_CullTransparentMesh: 1
+=======
+>>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
 --- !u!1 &2085858516
